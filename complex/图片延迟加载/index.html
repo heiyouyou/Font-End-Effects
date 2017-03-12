@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js实现图片延迟加载效果</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body{font-family:"Microsoft YaHei";background-color:#ccc;font-size:12px;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        .container{margin-top:100px;width:100%;background-color:#fff;overflow: hidden;}
+        .container ul li {width:300px;height:429px;background-color:red;margin:10px 5px;
+            float: left;}
+        .container ul li img{width:100%;height:100%;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li><img class="lazy" alt="1" data-original="images/1.jpg"></li>
+            <li><img class="lazy" alt="2" data-original="images/2.jpg"></li>
+            <li><img class="lazy" alt="3" data-original="images/3.jpg"></li>
+            <li><img class="lazy" alt="4" data-original="images/4.jpg"></li>
+            <li><img class="lazy" alt="5" data-original="images/5.jpg"></li>
+            <li><img class="lazy" alt="6" data-original="images/6.jpg"></li>
+            <li><img class="lazy" alt="7" data-original="images/7.jpg"></li>
+            <li><img class="lazy" alt="8" data-original="images/8.jpg"></li>
+            <li><img class="lazy" alt="9" data-original="images/9.jpg"></li>
+            <li><img class="lazy" alt="10" data-original="images/10.jpg"></li>
+            <li><img class="lazy" alt="11" data-original="images/11.jpg"></li>
+            <li><img class="lazy" alt="12" data-original="images/12.jpg"></li>
+            <li><img class="lazy" alt="13" data-original="images/13.jpg"></li>
+            <li><img class="lazy" alt="14" data-original="images/14.jpg"></li>
+            <li><img class="lazy" alt="15" data-original="images/15.jpg"></li>
+            <li><img class="lazy" alt="16" data-original="images/16.jpg"></li>
+            <li><img class="lazy" alt="17" data-original="images/17.jpg"></li>
+            <li><img class="lazy" alt="18" data-original="images/18.jpg"></li>
+            <li><img class="lazy" alt="19" data-original="images/19.jpg"></li>
+            <li><img class="lazy" alt="20" data-original="images/20.jpg"></li>
+            <li><img class="lazy" alt="1" data-original="images/1.jpg"></li>
+            <li><img class="lazy" alt="2" data-original="images/2.jpg"></li>
+            <li><img class="lazy" alt="3" data-original="images/3.jpg"></li>
+            <li><img class="lazy" alt="4" data-original="images/4.jpg"></li>
+            <li><img class="lazy" alt="5" data-original="images/5.jpg"></li>
+            <li><img class="lazy" alt="6" data-original="images/6.jpg"></li>
+            <li><img class="lazy" alt="7" data-original="images/7.jpg"></li>
+            <li><img class="lazy" alt="8" data-original="images/8.jpg"></li>
+            <li><img class="lazy" alt="9" data-original="images/9.jpg"></li>
+            <li><img class="lazy" alt="10" data-original="images/10.jpg"></li>
+            <li><img class="lazy" alt="11" data-original="images/11.jpg"></li>
+            <li><img class="lazy" alt="12" data-original="images/12.jpg"></li>
+            <li><img class="lazy" alt="14" data-original="images/14.jpg"></li>
+            <li><img class="lazy" alt="13" data-original="images/13.jpg"></li>
+            <li><img class="lazy" alt="15" data-original="images/15.jpg"></li>
+            <li><img class="lazy" alt="16" data-original="images/16.jpg"></li>
+            <li><img class="lazy" alt="17" data-original="images/17.jpg"></li>
+            <li><img class="lazy" alt="18" data-original="images/18.jpg"></li>
+            <li><img class="lazy" alt="19" data-original="images/19.jpg"></li>
+            <li><img class="lazy" alt="20" data-original="images/20.jpg"></li>
+            <li><img class="lazy" alt="1" data-original="images/1.jpg"></li>
+            <li><img class="lazy" alt="2" data-original="images/2.jpg"></li>
+            <li><img class="lazy" alt="3" data-original="images/3.jpg"></li>
+            <li><img class="lazy" alt="4" data-original="images/4.jpg"></li>
+            <li><img class="lazy" alt="5" data-original="images/5.jpg"></li>
+            <li><img class="lazy" alt="6" data-original="images/6.jpg"></li>
+            <li><img class="lazy" alt="7" data-original="images/7.jpg"></li>
+            <li><img class="lazy" alt="8" data-original="images/8.jpg"></li>
+            <li><img class="lazy" alt="9" data-original="images/9.jpg"></li>
+            <li><img class="lazy" alt="10" data-original="images/10.jpg"></li>
+            <li><img class="lazy" alt="11" data-original="images/11.jpg"></li>
+            <li><img class="lazy" alt="12" data-original="images/12.jpg"></li>
+            <li><img class="lazy" alt="13" data-original="images/13.jpg"></li>
+            <li><img class="lazy" alt="14" data-original="images/14.jpg"></li>
+            <li><img class="lazy" alt="15" data-original="images/15.jpg"></li>
+            <li><img class="lazy" alt="16" data-original="images/16.jpg"></li>
+            <li><img class="lazy" alt="17" data-original="images/17.jpg"></li>
+            <li><img class="lazy" alt="18" data-original="images/18.jpg"></li>
+            <li><img class="lazy" alt="19" data-original="images/19.jpg"></li>
+            <li><img class="lazy" alt="20" data-original="images/20.jpg"></li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!--jquery版的图片延迟加载插件-->
+    <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("img").lazyload({effect: "fadeIn"});
+        });
+//        window.onload = window.onscroll = function(){
+//            function dom(id){
+//                return document.getElementById(id);
+//            };
+//            lazyImg();
+//            function lazyImg(){
+//                var domImg = document.getElementsByTagName("img");
+//                for(var i = 0,len=domImg.length;i < len ;i++){
+//                    if(getOffsetTop(domImg[i]) < getClientHeight() ){
+//                        var Imgsrc = domImg[i].getAttribute("data-original");
+//                        domImg[i].setAttribute("src",Imgsrc);
+//                    }
+//
+//                };
+////            拿到元素距离文档顶部的距离
+//                function getOffsetTop(el){
+////                先拿到图片距离最近盒子的offsetTop值
+//                    var top = el.offsetTop;
+////                再循环判断最近的盒子是否有定位属性，从而拿到该盒子的offsetTop值，最终叠加得到图片距离文档顶部的距离
+//                    while(el = el.offsetParent){
+//                        top += el.offsetTop;
+//                    };
+//                    return top;
+//                }
+//                function getClientHeight(){
+////                兼容拿到当前可视窗口的高度
+//                    var clientH = window.innerHeight || document.documentElement.clientHeight;
+////                拿到滚动条的滚动距离
+//                    var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+//                    return clientH + scrollT;
+//                }
+//
+//            }
+//        }
+    </script>
+</body>
+</html>

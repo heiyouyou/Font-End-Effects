@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title>表格排序</title>
+<style type="text/css">
+	* {margin:0;padding:0;}
+	body{font-size:12px;font-family:"微软雅黑";}
+	ul,li{list-style:none;}
+	a{text-decoration:none;}
+	img{vertical-align:top;}
+	.tablebox{padding:20px;background:#fff;margin:20px;}
+	.tablebox table{width:100%;border-collapse:collapse}
+	.tablebox table td,th{border:1px solid #ccc;padding:8px 10px;text-align:left;}
+	.tablebox table th{background:#333;color:#fff;}
+	.tablebox table td{font-size:12px;}
+	.tablebox table td  a{color:#333;text-decoration: none;}
+</style>
+</head>
+<body>
+	<div class="tablebox">
+	  	<table>
+	  		<thead id="thead">
+	  			<tr>
+	  				<th class="sortd" sort="num">ID</th>
+	  				<th class="sortd" sort="title">标题</th>
+	  				<th class="sortd" sort="time">创建时间</th>
+					<th class="sortd" sort="money">金额</th>
+	  				<th>封面图片</th>
+	  				<th>操作</th>
+	  			</tr>
+	  		</thead>
+	  		<tbody id="tbody">
+				<tr>
+					<td>96</td>
+					<td>温暖有如初生</td>
+					<td>2016-03-21 18:58:49.0</td>
+					<td>￥1020.0</td>
+					<td>resource/content/2016/03/19/201603191204004.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>95</td>
+					<td>你错了，比 CEO 更难做的是联合创始人</td>
+					<td>2016-03-16 18:58:00.0</td>
+					<td>￥1003.0</td>
+					<td>resource/content/2016/03/16/201603161706473.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>94</td>
+					<td>2016众筹平台抢的是什么？入口！入口！入口！</td>
+					<td>2016-03-08 19:10:00.0</td>
+					<td>￥1003.0</td>
+					<td>resource/content/2016/03/08/201603081908572.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>93</td>
+					<td>Meerkat关闭直播？很好，你努力挣扎的样子成功吸引了我们的注意力</td>
+					<td>2016-03-08 19:08:08.0</td>
+					<td>￥10120.0</td>
+					<td>resource/content/2016/03/08/201603081905564.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>79</td>
+					<td>一路走来，太累了</td>
+					<td>2015-11-25 14:52:30.0</td>
+					<td>￥10.0</td>
+					<td>resource/content/2015/11/25/201511251452304.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>78</td>
+					<td>SpringMvc验证配置流程</td>
+					<td>2015-11-16 21:54:33.0</td>
+					<td>￥10110.0</td>
+					<td>resource/content/2015/11/16/201511162154013.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+				<tr>
+					<td>77</td>
+					<td>潭州学院-3D大旋转banner特效</td>
+					<td>2015-10-26 16:26:39.0</td>
+					<td>￥1040.0</td>
+					<td>resource/content/2015/10/26/201510261626131.png</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>		
+				<tr>
+					<td>76</td>
+					<td>一瞬间成为永恒</td>
+					<td>2015-10-26 16:05:51.0</td>
+					<td>￥1010.0</td>
+					<td>resource/content/2015/10/26/201510261605512.jpg</td>
+					<td class="delete"><a href="#">删除</a></td>
+				</tr>
+	  		</tbody>
+	  	</table>
+  	</div>
+	<script type="text/javascript">
+		var deleteDoms = document.getElementsByClassName("delete");
+		var deleteDomsArray = toArray(deleteDoms);
+		//绑定点击删除该行的事件
+		deleteDomsArray.forEach(function(obj){
+			obj.addEventListener("click",function(){
+				var parent = this.parentElement;
+				dom("tbody").removeChild(parent);
+			});
+		});
+		//初始化执行函数
+		window.onload = sortTable;
+		function sortTable(){
+			//获取指定点击要排序的th
+			var thDoms = dom("thead").getElementsByClassName("sortd");
+			//将thDoms转成数组对象
+			var thDomArray = toArray(thDoms);
+			//遍历给每个th绑定事件
+			thDomArray.forEach(function(obj){
+				obj.addEventListener("click",function(){
+					//获取当前对象
+					var thObj = this;
+					//获取当前对象属性sort的值	
+					var sortMark = this.getAttribute("sort");
+					//获取当前点击th的索引
+					var index = getDomIndex(thDoms,this);
+					//获取tbody下的行数tr
+					var trDoms = dom("tbody").children;
+					//转换成数组
+					var trDomsArray = toArray(trDoms);
+					//动态个每个th绑定一把控制升降序的锁
+					thObj.mark = !thObj.mark;
+					console.log(trDomsArray);
+					console.log("=============");
+					trDomsArray.sort(function(a,b){
+						//通过tr获取指定列的值进行比较排序
+						var v1 = a.children[index].innerHTML; 
+						var v2 = b.children[index].innerHTML; 
+						if(sortMark == "num"){
+							v1 = parseFloat(v1);
+							v2 = parseFloat(v2);
+							return thObj.mark ? v1-v2 : v2 - v1; 
+						}else if(sortMark == "money"){
+							//剔除金额前后的特殊￥和$符号
+							v1 = parseFloat(v1.replace(/^[$|￥]/,""));
+							v2 = parseFloat(v2.replace(/^[$|￥]/,""));
+							return thObj.mark ? v1-v2 : v2 - v1;
+						}else if(sortMark == "time"){
+							//将日期对象转换成毫秒数比较
+							v1 = stringToDate(v1).getTime();
+							v2 = stringToDate(v2).getTime();
+							return thObj.mark ? v1-v2 : v2 - v1;
+						}else if(sortMark == "title"){
+							//调用字符js字符串比较器
+							return thObj.mark ? v1.localeCompare(v2) : v2.localeCompare(v1);
+						};
+					});
+					console.log(trDomsArray);
+					//重新设置到表格中
+					trDomsArray.forEach(function(obj){
+						dom("tbody").appendChild(obj);
+					});
+				});
+			});
+		};
+		//获取指定id的元素
+		function dom(id){
+			return document.getElementById(id);
+		};
+		//将htmlCollection转换成数组对象	
+		function toArray(doms){
+			return Array.prototype.slice.call(doms);
+		};
+		//将字符串格式日期转成日期对象
+		function stringToDate(stringDate){
+			return new Date(stringDate.replace(/-/g,"/").replace(".0",""));
+		};
+		//获取某个元素在doms集合中的索引
+		function getDomIndex(doms,dom){
+			var _index = 0;
+			for(var i = 0,len = doms.length;i < len;i++){
+				if(doms[i] == dom){
+					_index = i;
+					break;
+				};
+			};
+			return _index;
+		};
+		//无效日期格式
+		//var date = new Date("2016-03-08 19:10:00.0");
+		//var date1 = new Date(stringToDate("2016-03-08 19:10:00.0"));
+		//alert(date);
+		//alert(date1);
+	</script>
+</body>
+</html>

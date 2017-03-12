@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>酷炫照片墙V1.0.0</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: #fff;
+            color: #555;
+            font-family: 'Avenir Next', 'Lantinghei SC';
+            font-size: 14px;
+            /*-webkit-font-smoothing：none | subpixel-antialiased | antialiased
+             *none：对低像素的文本比较好
+             *subpixel-antialiased：默认值
+             *antialiased：抗锯齿
+             *-moz-osx-font-smoothing是mozilla给特定操作系统推出的特性增强
+             *设置grayscale对于图标字体表现更清晰，减轻次像素渲染带来的相邻像素色彩污染问题
+             */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        canvas {
+            padding:0;
+            margin:0;
+        }
+        div.btnbg {
+            position:fixed;
+            left:0;
+            top:0;
+        }
+        .wrap{
+            width:100%;
+            height:100%;
+            position: absolute;
+            /*top: 50%;*/
+            /*margin-top: -300px;*/
+            background-color: #333;
+            overflow: hidden;
+            /*设置3d环境的视图景深*/
+            -webkit-perspective: 800px;
+        }
+        .photo{
+            position: absolute;
+            /*初始化每张海报时，让它由中间散开去*/
+            left:50%;
+            top:50%;
+            margin:-160px 0 0 -130px;
+            width: 260px;
+            height: 320px;
+            z-index: 1;
+            box-shadow: 0 0 1px rgba(0, 0, 0, .3);
+            -webkit-transition: all .6s;
+            -moz-transition: all .6s;
+            -ms-transition: all .6s;
+            -o-transition: all .6s;
+            transition: all .6s;
+        }
+        .photo .side{
+            width:100%;
+            height:100%;
+            background-color: #fff;
+            position: absolute;
+            top:0;
+            right:0;
+            padding:20px;
+            box-sizing:border-box;
+        }
+        .photo .side-front .image{
+            width:100%;
+            height:250px;
+            line-height:250px;
+            overflow: hidden;
+        }
+        .photo .side-front .image img{
+            width:100%;
+        }
+        .photo .side-front .caption{
+            text-align:center;
+            font-size:16px;
+            line-height:50px;
+        }
+        .photo .side-back .desc{
+            color:#666;
+            font-size:14px;
+            line-height:1.5em;
+        }
+        /*当前海报居中的样式*/
+        .photo_center{
+            top: 50%;
+            left: 50%;
+            margin: -160px 0 0 -130px;
+            z-index: 999;
+        }
+        /*翻转的正面样式*/
+        .photo_front .photo_wrap{
+            transform: translate(0px, 0px) rotateY(0deg);
+            -webkit-transform: translate(0px, 0px) rotateY(0deg);
+            -moz-transform: translate(0px, 0px) rotateY(0deg);
+            -o-transform: translate(0px, 0px) rotateY(0deg);
+            -ms-transform: translate(0px, 0px) rotateY(0deg);
+        }
+        /*翻转的背面样式*/
+        .photo_back .photo_wrap{
+            /*先平移后翻转*/
+            transform: translate(260px, 0px) rotateY(180deg);
+            -webkit-transform: translate(260px, 0px) rotateY(180deg);
+            -moz-transform: translate(260px, 0px) rotateY(180deg);
+            -o-transform: translate(260px, 0px) rotateY(180deg);
+            -ms-transform: translate(260px, 0px) rotateY(180deg);
+        }
+        .photo_wrap{
+            position:absolute;
+            width:100%;
+            height:100%;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: all .6s;
+            -moz-transition: all .6s;
+            -ms-transition: all .6s;
+            -o-transition: all .6s;
+            transition: all .6s;
+            /*
+             *IE 10、Firefox、Opera 支持 transform-origin 属性，IE 9 支持替代的 -ms-transform-origin 属性（仅适用于 2D 转换），
+             *Safari 和 Chrome 支持替代的 -webkit-transform-origin 属性（3D 和 2D 转换），Opera 只支持 2D 转换
+             *transform-origin: x-axis y-axis z-axis; 设置旋转元素的基点位置
+             *x-axis：定义视图被置于 X 轴的何处。可能的值：left | center | right | length | %
+             *y-axis：定义视图被置于 Y 轴的何处。可能的值：top | center | bottom | length | %
+             *z-axis：定义视图被置于 Z 轴的何处。可能的值：length
+             */
+            transform-origin: 0% 50% 0px;
+            -ms-transform-origin: 0% 50% 0px;/* IE 9 */
+            -o-transform-origin: 0% 50% 0px;/* Opera */
+            -webkit-transform-origin: 0% 50% 0px;/* Safari 和 Chrome */
+            -moz-transform-origin: 0% 50% 0px;/* Firefox */
+        }
+        /*照片的正面*/
+        .photo_wrap .side-front{
+            -webkit-transform: rotateY(0deg);
+            -moz-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            -o-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+        }
+        /*照片的背面*/
+        .photo_wrap .side-back{
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
+        .photo_wrap .side{
+            /*设置元素翻转的背面可见性*/
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        /*导入字体图标*/
+        @font-face {
+            font-family: "icons";
+            src:url('fonts/icons.woff') format('woff');
+            font-weight:normal;
+            font-size:normal;
+        }
+        /*控制按钮的样式*/
+        .nav{
+            position: absolute;
+            width: 80%;
+            left: 10%;
+            height: 30px;
+            line-height: 30px;
+            bottom: 20px;
+            z-index: 9999;
+            text-align: center;
+        }
+        /*按钮普通样式*/
+        .nav .i{
+            width:30px;
+            height:30px;
+            display:inline-block;
+            cursor:pointer;
+            text-align: center;
+            background-color: #aaa;
+            border-radius: 50%;
+            -webkit-transform: scale(.5);
+            -moz-transform: scale(.5);
+            -ms-transform: scale(.5);
+            -o-transform: scale(.5);
+            transform: scale(.5);
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            -ms-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+        }
+        /* 设置并显示字体图标 */
+        .nav .i:after{
+            content:"\e600";
+            font-family: 'icons';
+            font-size:14px;
+            display: inline-block;
+            text-align:center;
+            line-height:30px;
+            color:#fff;
+            opacity:0;
+        }
+        /*当前居中海报对应的按钮样式*/
+        .nav .i_current:after{
+            opacity:1;
+        }
+        .nav .i_current{
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+        /*按钮背面样式*/
+        .nav .i_back{
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            background-color:#555;
+        }
+    </style>
+</head>
+<!--onselectstart="return false"阻止网页被选中-->
+<body onselectstart="return false">
+<!--2、改写视图，为模板字符串-->
+<div class="wrap" id="wrap">
+    <!--photo负责平移、旋转-->
+    <div class="photo photo_front" onclick="turn(this)" id="photo_{{index}}">
+        <!--photo_wrap 负责翻转-->
+        <div class="photo_wrap">
+            <div class="side side-front">
+                <p class="image"><img src="images/{{img}}"></p>
+                <p class="caption">{{caption}}</p>
+            </div>
+            <div class="side side-back">
+                <p class="desc">{{desc}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="mp3" src="mp3/HAPPY%20BIRTHDAY%20-%20君だったら.mp3" loop></audio>
+<!--导入海报数据源文件-->
+<script type="text/javascript" src="data/data1.js"></script>
+<script type="text/javascript">
+    //3、通用选择器函数
+    function g(selector){
+        var method = selector.substr(0,1) == "." ? "getElementsByClassName" : "getElementById";
+        return document[method](selector.substr(1));
+    };
+    //6、计算左右分区的海报位置范围
+    function range(){
+        var range = {left:{x:[],y:[]},right:{x:[],y:[]}};
+        //获取最外围容器的宽度和高度
+        var wrap = {
+            width:g("#wrap").clientWidth,
+            height:g("#wrap").clientHeight
+        }
+        //获取每一张海报的宽度和高度，因为海报的大小都是一样的，所以取第一张
+        var photo = {
+            width:g(".photo")[0].clientWidth,
+            height:g(".photo")[0].clientHeight
+        }
+        //分区范围可以自行设置
+        range.left.x = [0 - photo.width / 4 + 130, wrap.width / 2 - photo.width * 5 / 4 + 130];
+        range.left.y = [0 - photo.height / 4 + 160, wrap.height - photo.height * 3 / 4 + 160];
+        range.right.x = [wrap.width / 2 + photo.width / 4 + 130, wrap.width - photo.width / 4 + 130];
+        range.right.y = range.left.y;
+        return range;
+    }
+    //获取某个范围内的随机一个数，range = [min,max]
+    function random(range){
+        //获取最大值
+        var max = Math.max(range[0],range[1]);
+        //获取最小值
+        var min = Math.min(range[0],range[1]);
+        //获取最大最小值的差
+        var diff = max - min;
+        //获取指定范围内的随机一个数（包括负数）
+        return Math.round(Math.random()*diff) + min;
+        /*
+         *例如 [1, 20]，则 diff = 19 --> 0 <= Math.round(Math.random() * diff) <= 19
+         *然后再加上最小值
+         ，即可随机生成 1 ~ 20 之间的任意数，如果使用 Math.floor() 则
+         *生成 1 ~ 19 之间的任意数，使用 Math.ceil() 则生成 2 ~ 20 之间的任意数
+         */
+    }
+    //4、输出所有海报数据
+    var data = data;
+    function addPhotos(){
+        //获取海报的模板内容
+        var template = g("#wrap").innerHTML;
+        //用来装每张海报的数组
+        var html = [];
+        var nav = [];
+        //遍历获取每张海报的数据并且将模板文件给添加相应的数据
+        for(s in data){
+            //console.log(typeof s);//索引s为字符串类型
+            var _html = template.replace('{{index}}',s)
+                    .replace('{{img}}',data[s].img)
+                    .replace('{{caption}}',data[s].caption)
+                    .replace('{{desc}}',data[s].desc);
+            html.push(_html);
+            nav.push('<span id="nav_'+s+'" onclick="turn(g(\'#photo_'+s+'\'))" class="i"></span>');
+            //g("#wrap").innerHTML +=_html;//采用拼接的方法
+        };
+        html.push('<div class="nav">'+nav.join("")+'</div>');
+        //采用覆盖的方法添加元素
+        g("#wrap").innerHTML = html.join("");
+        //随机排序海报
+        rsort(random([0,data.length-1]));
+    };
+    addPhotos();
+    //5、随机排序海报
+    function rsort(n){//n为随机排序在中间的那张海报索引
+        var _photo = g(".photo");
+        var photos = [];
+        for(var s=0;s<_photo.length;s++){
+            //首先去掉有可能有photo_center和photo_back这些类样式的元素，只留下photo_front和photo的样式
+//                _photo[s].className = _photo[s].className
+//                                        .replace(/\s*photo_center\s*/,'')
+//                                        .replace(/\s*photo_front\s*/,'')
+//                                        .replace(/\s*photo_back\s*/,'');
+//                _photo[s].className +=' photo_front';
+            //或者：
+            _photo[s].className ='photo photo_front';
+            //让内联样式无效化，防止后面添加的类样式无效
+            _photo[s].style.left = '';
+            _photo[s].style.top = '';
+            //兼容写法
+            _photo[s].style['transform'] = _photo[s].style['-webkit-transform'] = 'scale(1)';
+            photos.push(_photo[s]);
+        }
+        //先随机获取初始排序在中间的那张海报
+        var photo_center = g("#photo_"+n);
+        //添加居中样式photo_center，注意类名之间的空格
+        photo_center.className += " photo_center";
+        //将已经居中的那张海报从其他海报中剔除出来
+        photo_center =  photos.splice(n,1);
+        //获取左右分区的海报数（数组），splice方法会导致数组的长度发生变化
+        var photo_left = photos.splice(0,Math.ceil(photos.length/2));
+        var photo_right = photos;
+        //左分区
+        for(s in photo_left){
+//                随机散开效果
+//                photo_left[s].style.left = random(range().left.x)+"px";
+//                photo_left[s].style.top = random(range().left.y)+"px";
+//                photo_left[s].style['transform'] = "rotate("+random([-150,150])+"deg) scale(1)";
+//                环形效果（注意先旋转缩放，再平移，而且不需要改变left和top的值）
+            photo_left[s].style['transform'] = "rotate("+random([-60,60])+"deg) scale(.8) translate(600px)";
+
+        }
+        //右分区
+        for(i in photo_right){
+//                photo_right[i].style.left = random(range().right.x)+"px";
+//                photo_right[i].style.top = random(range().right.y)+"px";
+//                photo_right[i].style['transform'] = "rotate("+random([-150,150])+"deg) scale(1)";
+            photo_right[i].style['transform'] = "rotate("+random([-60,60])+"deg) scale(.8) translate(-600px)";
+
+        }
+        //为控制按钮添加样式
+        var navs = g('.i');
+        for (var index=0;index<navs.length;index++){
+            navs[index].className = 'i';
+        }
+        //当前控制按钮处理
+        g('#nav_'+n).className +=' i_current';
+    };
+    //1、翻面控制
+    function turn(elem){
+        var cls = elem.className;
+        var n = elem.id.split('_')[1];
+        //判断当前点击的元素是不是 photo_center，不是的话不执行后面的翻转而进行海报排序
+        if(!/photo_center/.test(cls)){
+            return rsort(n);
+        }
+        //匹配翻转的前后面时对应的样式
+        if(/photo_front/.test(cls)){
+            //有photo_front这个样式就进行替换成photo_back
+            cls = cls.replace(/photo_front/,"photo_back");
+            //添加背面样式
+            g('#nav_'+n).className +=' i_back';
+            g('#mp3').play();
+        }else{
+            //有photo_back这个样式就进行替换成photo_front
+            cls = cls.replace(/photo_back/,"photo_front");
+            //移除背面样式
+            g('#nav_'+n).className = g('#nav_'+n).className.replace(/\s*i_back\s*/,'');
+            g('#mp3').pause();
+        }
+        elem.className = cls;
+    }
+    var timer = null;
+    //        自动切换
+    autoPlay();
+    function autoPlay(){
+        timer = setInterval(function(){
+            rsort(random([0,data.length-1]));
+        },2500);
+    };
+    g("#wrap").onmouseenter = function(){
+        clearInterval(timer);
+    };
+    g("#wrap").onmouseleave = function(){
+        autoPlay();
+    }
+</script>
+</body>
+</html>
