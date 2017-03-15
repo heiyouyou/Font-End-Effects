@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>太阳系特效</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		#canvas{background-color:#000;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="1000" height="900"></canvas>
+	<script type="text/javascript">
+		//获取canvas对象 
+		var canvas = document.getElementById("canvas");
+		//设置2d的绘制环境 
+		var cxt = canvas.getContext("2d");
+		// 绘画星球轨道
+		function drawTrack(){
+			// 循环绘制八个轨道
+			for(var i = 0;i<8;i++){
+				// 开始绘画路径
+				cxt.beginPath();
+				// 绘制圆形
+				cxt.arc(500,500,(i+1)*50,0,Math.PI*2);
+				// 结束绘画路径
+				cxt.closePath();
+				// 设置画笔的颜色
+				cxt.strokeStyle = "#fff";
+				// 绘制轨道
+				cxt.stroke();
+			};
+		};
+		drawTrack();
+		// 创造星球模板
+		// x y radius星球的坐标与半径，cycle：公转周期 sColor与eColor渐变前后的颜色
+		function Star(x,y,radius,cycle,sColor,eColor){
+			this.x = x;
+			this.y = y;
+			this.radius = radius;
+			this.cycle = cycle;
+			this.sColor = sColor;
+			this.eColor = eColor;
+			this.color = null;
+			this.time = 0;
+		};
+		// 将绘制圆形绑定在星球的原型对象上
+		Star.prototype.draw = function(){
+			// 保持之前的画布内容
+			cxt.save();
+			// 设置异次元天空的圆心
+			cxt.translate(500,500);
+			// 获取对象每天旋转的弧度数
+			cxt.rotate(this.time*(360/this.cycle)*Math.PI/180)
+			cxt.beginPath();//每当绘制一个图形都要进行重新设置绘画路径
+			cxt.arc(this.x,this.y,this.radius,0,Math.PI*2);
+			//渐变色画笔 createRadialGradient(内圆心x,内圆心y,内圆半径,外圆心x,外圆心x,外圆心y,外圆半径)
+			this.color = cxt.createRadialGradient(this.x,this.y,0,this.x,this.y,this.radius);
+			this.color.addColorStop(0,this.sColor);
+			this.color.addColorStop(1,this.eColor);
+			cxt.closePath();
+			cxt.fillStyle = this.color;
+			cxt.fill();
+			// 恢复之前画布的内容
+			cxt.restore();
+			this.time += 1;
+		};
+		// 一个临时构造函数
+		function tempStar(){
+			// 调整this指向
+			Star.call(this);
+		};
+		// 临时构造函数的原型对象指向星球的原型对象，并拥有星球原型对象上的方法
+		tempStar.prototype = Star.prototype;
+		// 构造太阳对象方法
+		function Sun(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,0,20,0,"#f60","#f90");
+		};
+		Sun.prototype = new tempStar();
+		// 构造水星对象方法
+		function Mercurry(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,-50,10,87.7,"#a69697","#5c3e40");
+		};
+		Mercurry.prototype = new tempStar();
+		// 构造金星对象方法
+		function Venus(){
+			Star.call(this,0,-100,10,224.7,"#c4bbac","#1f1315");
+		};
+		Venus.prototype = new tempStar();
+		// 构造地球对象方法
+		function Earth(){
+			Star.call(this,0,-150,10,365.24,"#78B1e8","#5c3e40");
+		};
+		Earth.prototype = new tempStar();
+		// 构造火星对象方法
+		function Mars(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,-200,10,686.98,"#cec9b6","#76422d");
+		};
+		Mars.prototype = new tempStar();
+		Mars.prototype.show = function(){
+			console.log("火星运动了.....");
+		};
+		Mars.prototype.constructor = Mars;
+		// 构造木星对象方法
+		function Jupiter(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,-250,20,4332.589,"#c0a48e","#322222");
+		};
+		Jupiter.prototype = new tempStar();
+		// 构造土星对象方法
+		function Saturn(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,-300,10,10759.5,"#f7f9e3","#5c4533");
+		};
+		Saturn.prototype = new tempStar();
+		// 构造天王星对象方法
+		function Uranus(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,-350,10,30799.095,"#a7e1e5","#19243a");
+		};
+		Uranus.prototype = new tempStar();
+		// 构造海王星对象方法
+		function Nepturne(){
+			// 继承星球的属性和方法，调整this指向
+			Star.call(this,0,-400,10,60152,"#0661b2","#1e3b73");
+		};
+		Nepturne.prototype = new tempStar();
+		var sun = new Sun();
+		var mercurry = new Mercurry();
+		var venus = new Venus();
+		var Earth = new Earth();
+		var Jupiter = new Jupiter();
+		var saturn = new Saturn();
+		var uranus = new Uranus();
+		var nepturne = new Nepturne();
+		var mars = new Mars();
+		console.log(mars.constructor);
+		mars.show();
+		// 星球移动
+		function move(){
+			// 清除上一次画布
+			cxt.clearRect(0,0,1000,1000);
+			// 重新绘画轨迹
+			drawTrack();
+			sun.draw();
+			mercurry.draw();
+			venus.draw();
+			Earth.draw();
+			Jupiter.draw();
+			saturn.draw();
+			uranus.draw();
+			nepturne.draw();
+			mars.draw();
+		};
+		setInterval(move,10);
+	</script>
+</body>
+</html>

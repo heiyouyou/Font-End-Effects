@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>黑客帝国特效</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		html{overflow:hidden;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<audio src="黑客.mp3" autoPlay loop></audio>
+	<script type="text/javascript">
+		//浏览器获取屏幕分辨率尺寸 
+		var s = window.screen;
+		var w = s.width;
+		var h = s.height;
+		// 获取画布对象
+		var canvas = document.getElementById("canvas");
+		// 获取绘画2d环境
+		var ctx = canvas.getContext("2d");
+		// 设置画布的宽高
+		canvas.width = w;
+		canvas.height = h;
+		// 定义内容
+		var str = "hello■☎☻☜♀☑⊙*⊙⊕⊙♠♥♧◁□○☏☆♢world!!!@#$%%";
+		// 定义文字大小
+		var  fontSize = 16;
+		// 获取当前浏览器窗口的最大列数
+		var cols = Math.floor(w/fontSize);
+		// 初始化每个文字的纵向坐标（y）
+		var drops = [];
+		for(var i = 0;i<cols;i++){
+			drops.push(0);
+		};
+		// 绘画的方法
+		function draw(){
+			// 每次重新绘画进行背景色的改变和覆盖
+			ctx.fillStyle = "rgba(0,0,0,.3)";
+			ctx.fillRect(0,0,w,h);
+			// 设置字体样式
+			ctx.font = "600 "+fontSize+"px 微软雅黑";
+			// 填充文本内容和位置
+			for(var i = 0;i<cols;i++){
+				// 字体颜色
+				ctx.fillStyle = randomColor(true);
+				// 随机获取文字的索引下标
+				var index = Math.floor(Math.random()*str.length);
+				// 获取每个文字的横向坐标（x）
+				var x = i*fontSize;
+				// 获取每个文字的y坐标
+				var y = drops[i]*fontSize;
+				ctx.fillText(str[index],x,y);
+				// 当某个文字的y坐标大于画布的高度时并且当次随机数达到指定值后进行归零y坐标，进行形成下落序差的效果
+				if(y >=canvas.height && Math.random() > 0.89){
+					drops[i] = 0;
+				};
+				// 每次播放进行自增1
+				drops[i]++;
+			};
+		};
+		draw();
+		// 定时器产生动画效果
+		setInterval(draw,70);
+		// 随机rgba颜色
+		function randomColor(flag){
+			var r = Math.floor(Math.random()*256);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+			var a = Math.random();
+			return flag ? "rgba("+r+","+g+","+b+","+a+")" : "green";
+			// 十六进制颜色
+			// var r = Math.floor(Math.random()*256).toString(16);
+			// var g = Math.floor(Math.random()*256).toString(16);
+			// var b = Math.floor(Math.random()*256).toString(16);
+			// return flag ?  "#"+r+g+b : "green";
+		};
+	</script>
+</body>
+</html>
