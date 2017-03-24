@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>background-clip与background-origin的使用</title>
+		<style>
+			*{padding:0;margin:0;}
+			.box{
+				width:400px;height:200px;
+				margin:10px auto;
+				border:20px solid rgba(0,0,0,.5);
+				padding:10px;
+				background:url(img/bn2.jpg) no-repeat;	
+				background-position:0px 0px;
+				background-origin:padding-box;
+			}
+			.box:nth-child(1){
+				background-clip:border-box;
+				background-origin:border-box;
+			}
+			.box:nth-child(2){
+				background-clip:padding-box;
+				background-origin:padding-box;
+				/*background-origin:border-box;
+				background-origin:content-box;*/
+			}
+			/*
+			 background-origin:
+			 	border-box(以边框为原点，进行定位)
+				padding-box(默认值，以padding为原点，进行定位)
+				content-box(以内容区域为原点，进行定位)
+			 * */
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="box"></div>
+			<div class="box"></div>
+		</div>
+	</body>
+</html>

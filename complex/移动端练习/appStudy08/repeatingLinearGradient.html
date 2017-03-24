@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>重复性线性渐变1</title>
+		<style>
+			body{
+				background-image:
+                    /*linear-gradient(45deg, #555 25%, transparent 25%, transparent),
+                    linear-gradient(-45deg, #555 25%, transparent 25%, transparent),
+                    linear-gradient(45deg, transparent 75%, #555 75%),
+                    linear-gradient(-45deg, transparent 75%, #555 75%);*/
+           	 		linear-gradient(-45deg, #555 25%, transparent 25%, transparent),                     linear-gradient(-45deg, #555 25%, transparent 25%, transparent),                     linear-gradient(45deg, transparent 75%, #555 75%),                     linear-gradient(-45deg, transparent 75%, #555 75%);
+           	 		
+            		-webkit-background-size: 100px 100px;
+            		-moz-background-size: 100px 100px;
+           	 		background-size: 100px 100px;
+           	 		
+			}
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-repeating-linear-gradient(left,red,blue);}*/
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-repeating-linear-gradient(top,red 10%,transparent 20%);}*/
+			/*.box{width:400px;height:400px;margin:10px auto;background-image:-webkit-repeating-linear-gradient(left,red 5%,blue 8%,yellow 11%,green 13%);}*/
+			.box{width:400px;height:400px;margin:10px auto;background-image:-webkit-repeating-linear-gradient(left,red 1px,blue 10px,yellow 20px,green 30px);}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+</html>

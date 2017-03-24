@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax测试</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/wzy_util.js"></script>
+		<script>
+			ajax({
+				url:"data/data.js",
+				type:"get",
+				data:{name:"hhaha",age:22},
+//				data:"name=hhaha&age=22",
+//				async:false,
+				success:function(data){
+					console.log(data);
+				}
+			});
+		</script>
+	</body>
+</html>

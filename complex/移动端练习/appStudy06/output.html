@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>output表单控件的使用</title>
+	</head>
+	<body>
+		<form id="loginForm" name="loginForm" method="post" action="#" oninput="countPrice()">
+			<table>
+				<tbody>
+					<tr>
+						<td>请输入金额：</td>
+						<td><input type="text" name="rp" value="50"></td>
+					</tr>
+					<tr>
+						<td>当前的金额是：</td>
+						<td><output name="price">0</output></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		
+		<script type="text/javascript">
+			console.log(loginForm);//可以直接写id获取表单对象
+			console.log(document.forms[0]);//可以通过document.forms获取文档下所有的表单元素
+			console.log(document.forms["loginForm"]);//通过document.forms[name]获取指定name值的表单元素
+			console.log(document.loginForm);//直接document.formname获取指定name值的表单元素
+			console.log(document.getElementById("loginForm"));//id获取表单元素
+			function countPrice(){
+				loginForm.price.value = loginForm.rp.value;
+			}
+		</script>
+	</body>
+</html>

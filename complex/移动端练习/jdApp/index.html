@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>仿京东移动端APP</title>
+    <!--swiper组件的样式-->
+	<link rel="stylesheet" href="js/swiper/swiper.min.css">
+	<!--loading的动画样式-->
+	<link rel="stylesheet" type="text/css" href="css/wzy_animate.css"/>
+    <!--引入所有项目的基础样式-->
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <!--本站通用的样式-->
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <!--主页样式-->
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+	<div class="container mauto maxW640 bgf3">
+		<!--京东搜索-->
+		<div class="jd-header h40 px rl0m maxW640 displayf jscc">
+			<div class="jd-logo mrl10 mt5"><a class="displayb h" href="javascript:void(0);"><i class="jd-sprite-icon displayib w h"></i></a></div>
+			<div class="jd-search-wrap flex1 bgw h30 br20 mt5">
+				<i class="jd-sprite-icon displayib ml10 mt5 vbt"></i>
+				<input class="ml5 borderNone" type="text" placeholder="魅族首发...."/>
+			</div>
+			<div class="jd-login lh40 fz14 mrl10"><a class="colorf displayb" href="javascript:void(0);">登录</a></div>
+		</div>
+		
+		<!--京东banner图-->
+		<!--<div class="jd-banner tc w bgc pr">
+			<ul>
+				<li class="banner-items w"><a href="javascript:void(0);"><img class="vm w" src="//m.360buyimg.com/mobilecms/s480x214_jfs/t3487/2/2196953724/83014/666e93dc/5848029dN4854f6f2.jpg!q70.jpg" alt="1" /></a></li>
+				<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w" src="//m.360buyimg.com/mobilecms/s480x214_jfs/t3841/9/1960462648/60944/bb860b1/5847e6aaN30f3ef1d.jpg!q70.jpg" alt="2" /></a></li>
+				<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w" src="//m.360buyimg.com/mobilecms/s720x322_jfs/t3400/198/2227708437/106040/6006e909/584688f7N5d9281bc.jpg!q70.jpg" alt="3" /></a></li>
+				<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w" src="//img1.360buyimg.com/da/jfs/t3892/10/354802134/122926/83c0827/5848d26fN561c786c.jpg" alt="4" /></a></li>
+			</ul>
+			<ul class="pa horizontalC">
+				<li class="banner-btn cur fl mr5 active br50"></li>
+				<li class="banner-btn cur fl mr5 br50"></li>
+				<li class="banner-btn cur fl mr5 br50"></li>
+				<li class="banner-btn cur fl br50"></li>
+			</ul>
+		</div>-->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+			    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/s480x214_jfs/t3487/2/2196953724/83014/666e93dc/5848029dN4854f6f2.jpg!q70.jpg" alt="1" /></a></div>
+			    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/s480x214_jfs/t3841/9/1960462648/60944/bb860b1/5847e6aaN30f3ef1d.jpg!q70.jpg" alt="2" /></a></div>
+			    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/s720x322_jfs/t3400/198/2227708437/106040/6006e909/584688f7N5d9281bc.jpg!q70.jpg" alt="3" /></a></div>
+			    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="///img1.360buyimg.com/da/jfs/t3892/10/354802134/122926/83c0827/5848d26fN561c786c.jpg" alt="4" /></a></div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+				
+		<!--京东快捷导航-->
+		<div class="jd-quick-nav">
+			<nav class="quick-entry-nav displayf jsca altc patb10 bgf3 flexflowrw">
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto" src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3430/49/2229757587/6062/24cfea82/584940f5N03c628f6.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">京东超市</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto" src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3286/167/1907269933/15789/da204cbe/57d53f16Nf3431cbd.png" alt="" /><span class="displayb fz14 multi-lineEllipsis mt5">全球购</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto" src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">服装城</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3190/352/4548409147/17612/a72147b8/584a0edcNde16cfbe.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">生鲜</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3136/365/2063682730/11309/c3ce0c78/57d9443eN68c52b40.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">火车票</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3430/49/2229757587/6062/24cfea82/584940f5N03c628f6.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">惠赚钱</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3286/167/1907269933/15789/da204cbe/57d53f16Nf3431cbd.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">领券</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3208/285/1806438443/12227/e35aa8d/57d5407cN0d6adf20.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">物流查询</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3190/352/4548409147/17612/a72147b8/584a0edcNde16cfbe.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">我的关注</span></a>
+				<a class="tc color0 mb15" href="javascript:void(0);"><img class="displayb mauto"src="//m.360buyimg.com/mobilecms/s80x80_jfs/t3136/365/2063682730/11309/c3ce0c78/57d9443eN68c52b40.png" alt="" /><span class="fz14 multi-lineEllipsis mt5">京东超市</span></a>
+			</nav>
+		</div>
+		
+		<!--京东快递信息-->
+		<div class="jd-news h30 bgw mtblr10 br5 lh30 displayf mt0">
+			<a class="mrl5" href="javascript:void(0);"><img src="//st.360buyimg.com/m/images/index/jd-news-tit.png" width="73" height="16"></a>
+			<div class="scroll-news ohidden flex1">
+				<ul class="news-list pr">
+					<li class="news-item"><a class="fz12 color0 displayb" href="javascript:void(0);"><span class="colorr mr5">大促</span>1服饰鞋包 大牌直降低至3折！
+</a></li>
+					<li class="news-item"><a class="fz12 color0 displayb" href="javascript:void(0);"><span class="colorr mr5">大促</span>2服饰鞋包 大牌直降低至3折！
+</a></li>
+					<li class="news-item"><a class="fz12 color0 displayb" href="javascript:void(0);"><span class="colorr mr5">大促</span>3服饰鞋包 大牌直降低至3折！
+</a></li>
+					<li class="news-item"><a class="fz12 color0 displayb" href="javascript:void(0);"><span class="colorr mr5">大促</span>4服饰鞋包 大牌直降低至3折！
+</a></li>
+				</ul>
+			</div>
+			<a class="fz12 color0 mrl5" href="javascript:void(0);"><i class="line"></i>更多</a>
+		</div>
+		
+		<!--京东秒杀-->
+		<div class="jd-seckill-title bgw displayf jscb">
+			<a class="" href="javascript:void(0);"><img src="//m.360buyimg.com/mobilecms/jfs/t3451/307/73678054/7807/dd9134d/57fdff2eNb7cd186f.png" width="69" height="27"></a>
+			<div class="flex1 ml10"><strong class="fwb fz12">12点场</strong><span class="CountTime ml10 fz12">00:24:34</span></div>
+			<a class="jd-seckill-more-link fz12 mr10" href="javascript:void(0);">直播大宝男的天堂<i class="seckill-more-icon icontp2 ml5"></i></a>
+		</div>
+		<div class="jd-seckill-slider bgw ohidden">
+			<ul id="seckillul" class="swiper-wrapper seckill-new-list displayf">
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t2971/305/210252988/100364/31892cfc/574fffd7Nad6bc0bc.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#FF8400;">热卖</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>1236</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>9110</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t2971/305/210252988/100364/31892cfc/574fffd7Nad6bc0bc.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#FF8400;">热卖</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>1236</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>9110</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t2971/305/210252988/100364/31892cfc/574fffd7Nad6bc0bc.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#FF8400;">热卖</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>1236</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>9110</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t2971/305/210252988/100364/31892cfc/574fffd7Nad6bc0bc.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#FF8400;">热卖</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>1236</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>9110</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t2971/305/210252988/100364/31892cfc/574fffd7Nad6bc0bc.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#FF8400;">热卖</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>1236</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>9110</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t2971/305/210252988/100364/31892cfc/574fffd7Nad6bc0bc.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#FF8400;">热卖</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>1236</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>9110</span>
+				</li>
+				<li class="swiper-slide seckill-new-item displayf flexdirec altc">
+					<a class="seckill-new-link patrbl10 pr" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/s220x220_jfs/t3115/65/1627530353/98218/e89e3423/57d1161fNf6026c23.jpg!q70.jpg" alt="1" /><div class="seckill-tip" style="background-color:#7A44FB;">好货</div></a>
+					<span class="seckill-new-price fz16 fwb"><em>¥</em>36</span>
+					<span class="seckill-original-price linethrough fz12"><em>¥</em>90</span>
+				</li>
+			</ul>
+		</div>
+		
+		<!--京东活动-->
+		<div class="jd-activity bgw">
+			<div><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3673/90/2326965981/100074/bbce1df7/584aee96N6b2e483b.png!q70.jpg" alt="1" /></a></div>
+			<div class="displayf jscb"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3073/20/4606514928/24860/6946a0e5/584a6123N223f6e35.jpg!q70.jpg" alt="1" /></a><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3328/49/2279559927/26720/849ed369/584a5ed6Ncbb00d95.jpg!q70.jpg" alt="1" /></a></div>
+			<div class="floor-graphic-show">
+				<ul class="displayf flexflowrw">
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3115/210/4536471687/23135/59eb94d4/58493b24N43692795.jpg!q70.jpg" alt="1" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3685/26/2304183125/17546/58c638e4/58493b6bN5fa3859a.jpg!q70.jpg" alt="2" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3466/201/2313926238/17092/14dfa532/58493af2Neea41081.jpg!q70.jpg" alt="3" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3115/210/4536471687/23135/59eb94d4/58493b24N43692795.jpg!q70.jpg" alt="1" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3685/26/2304183125/17546/58c638e4/58493b6bN5fa3859a.jpg!q70.jpg" alt="2" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3466/201/2313926238/17092/14dfa532/58493af2Neea41081.jpg!q70.jpg" alt="3" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3685/26/2304183125/17546/58c638e4/58493b6bN5fa3859a.jpg!q70.jpg" alt="2" /></a></li>
+					<li class="show-img"><a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3466/201/2313926238/17092/14dfa532/58493af2Neea41081.jpg!q70.jpg" alt="3" /></a></li>
+				</ul>
+			</div>
+			<div class="floor-graphic-item displayf">
+				<div class="bgw flex1 displayf pt10 borderb borderr">
+					<div class="graphic-text flex1 pl10">
+						<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">排行榜</strong>
+						<p class="color68 multi-lineEllipsis lh25">汇聚全球尖货</p>
+						<span class="graphic-btn colorf fz14" style="background:#ff4a7d">马上抢实惠&gt;&gt;</span></a>
+					</div>
+					<div class="graphic-img flex1"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3988/241/330318081/13628/122589ae/5848fcb0Nd22f02dc.jpg!q70.jpg" alt="1" /></a></div>
+				</div>
+				<div class="bgw flex1 displayf pt10 borderb borderr">
+					<div class="graphic-text flex1 pl10 lh25">
+						<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">排行榜</strong>
+						<p class="color68 multi-lineEllipsis lh25">1号牛仔2折</p></a>
+					</div>
+					<div class="graphic-img flex1"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3844/17/2038154036/7500/7253a9a2/584a7139Nb70251f3.jpg!q70.jpg" alt="2" /></a></div>
+				</div>
+			</div>
+		</div>
+		
+		<!--爱生活-->
+		<div class="jd-floor">
+			<div class="floor-title tc bgc displayf jscc altc">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2878/152/3484829401/8909/e1cf0ca/578de36bNae7bb54a.png!q70.jpg" alt="11" /></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf flexflowrw">
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">玩3C</strong>
+							<p class="color68 multi-lineEllipsis lh25">iPhone大额券</p>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3481/100/2039166607/4368/4ef4111c/583fb3c0N8e319efb.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东家电</strong>
+							<p class="color68 multi-lineEllipsis lh25">免费领现金券</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#ff4a7d">厨卫12.12</span></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3979/172/348771256/8137/9671270f/584a7d84N855d5111.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东超市</strong>
+							<p class="color68 multi-lineEllipsis lh25">新鲜购</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#ff4a7d">12.12提前抢</span></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3451/37/2274501906/80364/eb7e53a1/584b7b1eN631daa26.png!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱家</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3640/76/2330189141/19465/d21ece6a/584a6e29Nd97b3aa4.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱宝宝</strong>
+							<p class="color68 multi-lineEllipsis lh25">爆款买1得2</p>
+							<span class="graphic-btn colorf fz14" style="background:#ff4a7d">厨卫12.12</span>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3406/209/1383436125/12332/ae9a65bb/582447c3Ne084889b.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱美丽</strong>
+							<p class="color68 multi-lineEllipsis lh25">0元免费试用</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3865/62/305697440/16832/d810568/584a2ee0N9a09ae5e.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱吃</strong>
+							<p class="color68 multi-lineEllipsis lh25">牛奶满3免1</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#ff4a7d">厨卫12.12</span>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3148/324/4487500945/34406/4bf4d502/584a0a1eNf76c62a4.png!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱逛</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3592/50/2274880493/7247/6cad1369/584a82efNdc3b94e6.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="floor-items bgw patrbl5 bgf0">
+				<!--<div class="jd-banner tc w bgc pr" style="min-height:94px;">
+					<ul>
+						<li class="banner-items w"><a href="javascript:void(0);"><img class="vm w h" src="//m.360buyimg.com/mobilecms/jfs/t3787/132/2184788164/40077/9569abbf/584ac4caNff5a9c13.jpg!q70.jpg" alt="1" /></a></li>
+						<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w h" src="//img1.360buyimg.com/da/jfs/t4108/321/261584119/79929/f9b51d7c/584619e5N7351ceb2.jpg" alt="2" /></a></li>
+					</ul>
+					<ul class="pa horizontalC">
+						<li class="banner-btn cur fl mr5 active br50"></li>
+						<li class="banner-btn cur fl br50"></li>
+					</ul>
+				</div>-->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+					    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/jfs/t3787/132/2184788164/40077/9569abbf/584ac4caNff5a9c13.jpg!q70.jpg" alt="1" /></a></div>
+					    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//img1.360buyimg.com/da/jfs/t4108/321/261584119/79929/f9b51d7c/584619e5N7351ceb2.jpg" alt="2" /></a></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+		<!--享品质-->
+		<div class="jd-floor">
+			<div class="floor-title tc bgc displayf jscc altc">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2770/116/3443577674/8292/e6734ea8/578de5d6Nfa94e17d.png!q70.jpg" alt="11" /></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf flexflowrw">
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">玩3C</strong>
+							<p class="color68 multi-lineEllipsis lh25">iPhone大额券</p>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3481/100/2039166607/4368/4ef4111c/583fb3c0N8e319efb.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东家电</strong>
+							<p class="color68 multi-lineEllipsis lh25">免费领现金券</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#952dff">厨卫12.12</span></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3979/172/348771256/8137/9671270f/584a7d84N855d5111.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东超市</strong>
+							<p class="color68 multi-lineEllipsis lh25">新鲜购</p></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3835/143/1815036559/39222/c345a699/583e752aN151790fd.JPG!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱家</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3640/76/2330189141/19465/d21ece6a/584a6e29Nd97b3aa4.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱家</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#952dff">12.12提前抢</span></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t4000/359/317603085/11670/de8444fa/58492a78N6c15e15d.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱家</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3688/244/1967568593/18369/dab3e311/583e8fa1N2fa0fa50.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="floor-items bgw patrbl5 bgf0">
+				<!--<div class="jd-banner tc w bgc pr" style="min-height:94px;">
+					<ul>
+						<li class="banner-items w"><a href="javascript:void(0);"><img class="vm w h" src="//m.360buyimg.com/mobilecms/jfs/t3346/305/2209347847/50061/dda96b4f/58492fe8N7b248e4a.jpg!q70.jpg" alt="1" /></a></li>
+						<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w h" src="//img1.360buyimg.com/da/jfs/t3400/261/2250831359/79662/40ccf991/5849ffb8N29b5db82.jpg" alt="2" /></a></li>
+					</ul>
+					<ul class="pa horizontalC">
+						<li class="banner-btn cur fl mr5 active br50"></li>
+						<li class="banner-btn cur fl br50"></li>
+					</ul>
+				</div>-->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+					    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/jfs/t3346/305/2209347847/50061/dda96b4f/58492fe8N7b248e4a.jpg!q70.jpg" alt="1" /></a></div>
+					    <div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//img1.360buyimg.com/da/jfs/t3400/261/2250831359/79662/40ccf991/5849ffb8N29b5db82.jpg" alt="2" /></a></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+		<!--够特色-->
+		<div class="jd-floor">
+			<div class="floor-title tc bgc displayf jscc altc">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2617/85/3472523842/8761/d9d50d92/578de6d1N9e38b8e5.png!q70.jpg" alt="11" /></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf flexflowrw">
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">玩3C</strong>
+							<p class="color68 multi-lineEllipsis lh25">iPhone大额券</p>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3481/100/2039166607/4368/4ef4111c/583fb3c0N8e319efb.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf">
+						<div class="bgw displayf pt10 borderb borderr flexdirec flexgrow1">
+							<div class="graphic-text flex1 pl10">
+								<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱吃</strong>
+								<p class="color68 multi-lineEllipsis lh25">牛奶满3免1</p></a>
+							</div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3148/324/4487500945/34406/4bf4d502/584a0a1eNf76c62a4.png!q70.jpg" alt="2" /></a></div>
+						</div>
+						<div class="bgw displayf pt10 borderb borderrt flexdirec flexgrow1">
+							<div class="graphic-text flex1 pl10">
+								<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱逛</strong>
+								<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+							</div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3592/50/2274880493/7247/6cad1369/584a82efNdc3b94e6.jpg!q70.jpg" alt="2" /></a></div>
+						</div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">智能生活</strong>
+							<p class="color68 multi-lineEllipsis lh25">小米大牌直降</p>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3115/307/4546724306/4245/fd9be355/584dff7aN0756c7ba.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf">
+						<div class="bgw displayf pt10 borderb borderr flexdirec flexgrow1">
+							<div class="graphic-text flex1 pl10">
+								<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱吃</strong>
+								<p class="color68 multi-lineEllipsis lh25">牛奶满3免1</p></a>
+							</div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3148/324/4487500945/34406/4bf4d502/584a0a1eNf76c62a4.png!q70.jpg" alt="2" /></a></div>
+						</div>
+						<div class="bgw displayf pt10 borderb borderrt flexdirec flexgrow1">
+							<div class="graphic-text flex1 pl10">
+								<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东众筹</strong>
+								<p class="color68 multi-lineEllipsis lh25">1元科技</p></a>
+							</div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3181/104/4603323834/46549/f6998087/584e09c8N2104e73a.jpg!q70.jpg" alt="2" /></a></div>
+						</div>
+					</div>
+				</div>
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱宝宝</strong>
+							<p class="color68 multi-lineEllipsis lh25">爆款买1得2</p>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3406/209/1383436125/12332/ae9a65bb/582447c3Ne084889b.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱美丽</strong>
+							<p class="color68 multi-lineEllipsis lh25">0元免费试用</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3865/62/305697440/16832/d810568/584a2ee0N9a09ae5e.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱吃</strong>
+							<p class="color68 multi-lineEllipsis lh25">牛奶满3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3148/324/4487500945/34406/4bf4d502/584a0a1eNf76c62a4.png!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderrt flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱逛</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3592/50/2274880493/7247/6cad1369/584a82efNdc3b94e6.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="floor-items bgw patrbl5 bgf0">
+				<!--<div class="jd-banner tc w bgc pr" style="min-height:94px;">
+					<ul>
+						<li class="banner-items w"><a href="javascript:void(0);"><img class="vm w h" src="//m.360buyimg.com/mobilecms/jfs/t3268/41/4360704332/41546/8715398f/5846906fN1f3be1a9.jpg!q70.jpg" alt="1" /></a></li>
+						<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w h" src="//img1.360buyimg.com/da/jfs/t3379/114/2194683335/82735/5c488d9a/5847de50N3941e35b.jpg" alt="2" /></a></li>
+					</ul>
+					<ul class="pa horizontalC">
+						<li class="banner-btn cur fl mr5 active br50"></li>
+						<li class="banner-btn cur fl br50"></li>
+					</ul>
+				</div>-->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/jfs/t3268/41/4360704332/41546/8715398f/5846906fN1f3be1a9.jpg!q70.jpg" alt="1" /></a></div>
+						<div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//img1.360buyimg.com/da/jfs/t3379/114/2194683335/82735/5c488d9a/5847de50N3941e35b.jpg" alt="2" /></a></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+		
+		<!--逛商场-->
+		<div class="jd-floor">
+			<div class="floor-title tc bgc displayf jscc altc">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2677/290/3439129728/9956/4d607f09/578de9fcNb59b6153.png!q70.jpg" alt="11" /></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf flexflowrw">
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">玩3C</strong>
+							<p class="color68 multi-lineEllipsis lh25">iPhone大额券</p>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3481/100/2039166607/4368/4ef4111c/583fb3c0N8e319efb.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东家电</strong>
+							<p class="color68 multi-lineEllipsis lh25">免费领现金券</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#ff4a7d">厨卫12.12</span></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3979/172/348771256/8137/9671270f/584a7d84N855d5111.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">京东超市</strong>
+							<p class="color68 multi-lineEllipsis lh25">新鲜购</p></a>
+							<span class="graphic-btn colorf fz14" style="background:#ff4a7d">12.12提前抢</span></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3451/37/2274501906/80364/eb7e53a1/584b7b1eN631daa26.png!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱家</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 pr5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3640/76/2330189141/19465/d21ece6a/584a6e29Nd97b3aa4.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱宝宝</strong>
+							<p class="color68 multi-lineEllipsis lh25">爆款买1得2</p>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3406/209/1383436125/12332/ae9a65bb/582447c3Ne084889b.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱美丽</strong>
+							<p class="color68 multi-lineEllipsis lh25">0元免费试用</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3865/62/305697440/16832/d810568/584a2ee0N9a09ae5e.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱吃</strong>
+							<p class="color68 multi-lineEllipsis lh25">牛奶满3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3148/324/4487500945/34406/4bf4d502/584a0a1eNf76c62a4.png!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱逛</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3592/50/2274880493/7247/6cad1369/584a82efNdc3b94e6.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱宝宝</strong>
+							<p class="color68 multi-lineEllipsis lh25">爆款买1得2</p>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3406/209/1383436125/12332/ae9a65bb/582447c3Ne084889b.jpg!q70.jpg" alt="1" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱美丽</strong>
+							<p class="color68 multi-lineEllipsis lh25">0元免费试用</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3865/62/305697440/16832/d810568/584a2ee0N9a09ae5e.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱吃</strong>
+							<p class="color68 multi-lineEllipsis lh25">牛奶满3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3148/324/4487500945/34406/4bf4d502/584a0a1eNf76c62a4.png!q70.jpg" alt="2" /></a></div>
+					</div>
+					<div class="real-show bgw displayf pt10 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">爱逛</strong>
+							<p class="color68 multi-lineEllipsis lh25">跨万店3免1</p></a>
+						</div>
+						<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3592/50/2274880493/7247/6cad1369/584a82efNdc3b94e6.jpg!q70.jpg" alt="2" /></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="floor-items bgw patrbl5 bgf0">
+				<!--<div class="jd-banner tc w bgc pr" style="min-height:94px;">
+					<ul>
+						<li class="banner-items w"><a href="javascript:void(0);"><img class="vm w h" src="//m.360buyimg.com/mobilecms/jfs/t3787/132/2184788164/40077/9569abbf/584ac4caNff5a9c13.jpg!q70.jpg" alt="1" /></a></li>
+						<li class="banner-items hide w"><a href="javascript:void(0);"><img class="vm w h" src="//img1.360buyimg.com/da/jfs/t4108/321/261584119/79929/f9b51d7c/584619e5N7351ceb2.jpg" alt="2" /></a></li>
+					</ul>
+					<ul class="pa horizontalC">
+						<li class="banner-btn cur fl mr5 active br50"></li>
+						<li class="banner-btn cur fl br50"></li>
+					</ul>
+				</div>-->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//m.360buyimg.com/mobilecms/jfs/t3787/132/2184788164/40077/9569abbf/584ac4caNff5a9c13.jpg!q70.jpg" alt="1" /></a></div>
+						<div class="swiper-slide"><a href="javascript:void(0);"><img class="vm imgWHAuto" src="//img1.360buyimg.com/da/jfs/t4108/321/261584119/79929/f9b51d7c/584619e5N7351ceb2.jpg" alt="2" /></a></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+		<!--好店-->
+		<div class="jd-floor">
+			<div class="floor-title bgw displayf jscc altc pr">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2932/319/1730399341/7498/3cb0b919/578def50N6f62a57d.png!q70.jpg" alt="11" /></span><span class="more-shop-link pa"><a class="color68 fz15" href="javascript:void(0);">更多精彩<i class="seckill-more-icon icontp2 ml5"></i></a></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 pb5 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">女装</strong>
+							<p class="color68 multi-lineEllipsis lh25">女神教室</p>
+						</div>
+						<div class="shop-img displayf flex2 pr">
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/n1/jfs/t3286/61/3021000956/260202/be297822/57e894f6N35d56a3a.jpg" alt="1" /></a></div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/n1/jfs/t3214/364/2954374681/260202/be297822/57e8950dNc7c61a0c.jpg" alt="1" /></a></div>
+							<p class="shop-name pa tc mrl5">森马自营旗舰店</p>
+						</div>
+					</div>
+					<div class="real-show bgw displayf pt10 pb5 borderb borderrt flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis lh25">精选</strong>
+							<p class="color68 multi-lineEllipsis lh25">20家好店为你精心推荐</p>
+						</div>
+						<div class="shop-img displayf flex2 pr">
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/n1/jfs/t3664/279/1440655947/170580/e269caa8/5826a38bNb0a77cf5.jpg" alt="1" /></a></div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/n1/jfs/t1060/329/454563495/112007/7086165c/55261d53N10ca186a.jpg" alt="1" /></a></div>
+							<p class="shop-name pa tc mrl5">SupFire京东自营专区</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--清单-->
+		<div class="jd-floor">
+			<div class="floor-title bgw displayf jscc altc pr">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2869/357/3404860902/7661/26de821/578dee17N69a6ac0b.png!q70.jpg" alt="11" /></span><span class="more-shop-link pa"><a class="color68 fz15" href="javascript:void(0);">更多精彩<i class="seckill-more-icon icontp2 ml5"></i></a></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 pb5 borderb borderr flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis2 lh25">便宜买不到好手机？高颜值高性能千元机推荐</strong>
+						</div>
+						<div class="shop-img displayf flex2 pr">
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/s386x386_jfs/t2761/63/935652517/82561/cabf998b/572b0233N573b593b.jpg!q70.jpg" alt="1" /></a></div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/s386x386_jfs/t3427/337/404405318/124020/ff897828/58087a82N773f8a4f.jpg!q70.jpg" alt="1" /></a></div>
+						</div>
+					</div>
+					<div class="real-show bgw displayf pt10 pb5 borderb borderrt flexdirec">
+						<div class="graphic-text flex1 pl10 ">
+							<a href="javascript:void(0);"><strong class="graphic-tit color0 fwb fz18 multi-lineEllipsis2 lh25">听见美好，千元内HIFI级音质耳机推荐！</strong>
+						</div>
+						<div class="shop-img displayf flex2 pr">
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/s386x386_jfs/t2383/252/1348569216/20483/26e2f793/56945fd7Naa435dca.jpg!q70.jpg" alt="1" /></a></div>
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/s386x386_jfs/t3529/219/748659572/108691/b5790f65/581303cbN738a33aa.jpg!q70.jpg" alt="1" /></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<!--直播-->
+		<div class="jd-floor">
+			<div class="floor-title bgw displayf jscc altc pr">
+				<span class="title-img"><img src="//m.360buyimg.com/mobilecms/jfs/t2869/357/3404860902/7661/26de821/578dee17N69a6ac0b.png!q70.jpg" alt="11" /></span><span class="more-shop-link pa"><a class="color68 fz15" href="javascript:void(0);">更多精彩<i class="seckill-more-icon icontp2 ml5"></i></a></span></div>
+			<div class="floor-container bgw">
+				<div class="floor-graphic-item displayf">
+					<div class="real-show bgw displayf pt10 pb5 borderb borderr flexdirec">
+						<div class="shop-img displayf flex2 pr">
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3511/194/2264684178/66259/e17532e1/584beb6fNe552d5cf.jpg!q70.jpg" alt="1" /></a></div>	
+						</div>
+					</div>
+					<div class="real-show bgw displayf pt10 pb5 borderb borderrt flexdirec">
+						<div class="shop-img displayf flex2 pr">
+							<div class="graphic-img flex1 parl5"><a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3469/190/2275136369/49173/169d39aa/584bebbbN1b6b0c76.jpg!q70.jpg" alt="1" /></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="jd-floor">
+			<div class="activity-container">
+				<div class="floor-item patb10"><a class="displayb" href="javascript:void(0);"><img class="w" src="//st.360buyimg.com/m/images/index/floor_blank.png" alt="1"></a></div>
+				<div class="floor-item displayf patrbl5">
+					<div class="flex1 mr5">
+						<a href="javascript:void(0);"><img class="w h" src="//m.360buyimg.com/mobilecms/jfs/t3610/167/991180559/27126/f91cdb93/581af57fN2e28a012.jpg!q70.jpg"/></a>
+					</div>
+					<div class="flex1 displayf flexdirec">
+						<a class="flex1 mb5" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3646/123/2198399920/21342/416bca62/5846ba85N3cace04d.png!q70.jpg"/></a>
+						<a class="flex1" href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3667/235/2270074337/13976/55acb3b3/5846b16cNd7f43dd8.jpg!q70.jpg"/></a>
+					</div>
+				</div>
+			</div>
+			<div class="floor-item">
+				<a href="javascript:void(0);"><img class="w" src="//m.360buyimg.com/mobilecms/jfs/t3121/131/401832842/110566/4ea4f49e/57b532f6N325542c7.jpg!q70.jpg"/></a>
+			</div>
+		</div>
+
+		<!--京东推荐-->
+		<div class="jd-recommend">
+			<div class="gray-text tc patb20 pr">
+				<span class="gray-layout pr parl5"><span class="gray-text-img displayib mr10 icontp1"></span>为您推荐</span>
+			</div>
+			<div id="recommend-container">
+				<ul id="recommendList" class="displayf flexflowrw jscb">
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t1429/150/638443551/123858/53c6603f/559f51b6N91d1eedc.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">艾璐歌 150cc踏板摩托车 可上牌 免费送合格大证 路虎BWS助力车 踏板车 越野摩托车 BWS磨砂黑</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">3500</span><span class="small-price">.00</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t2395/116/2520303361/549937/2a6f2b2c/570bbd60Na0cb0c21.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">【京东超市】三只松鼠 休闲零食 干脆面串烧味 小贱拉面丸子85g/袋</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">11</span><span class="small-price">.90</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t3097/291/3343006965/88691/67a7ea00/57f130d2N3e3d53b3.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">顾堂 新款仿羊毛汽车座垫 短毛绒汽车坐垫 秋冬季保暖通用女坐垫 大红色 其它车型</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">498</span><span class="small-price">.00</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t3178/307/18025558/213064/5ae954fd/57a03c08N7df24417.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">【京东超市】富居(FOOJO)珊瑚绒地垫厨卫入门垫40*60cm七彩羽叶</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">15</span><span class="small-price">.00</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t1429/150/638443551/123858/53c6603f/559f51b6N91d1eedc.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">艾璐歌 150cc踏板摩托车 可上牌 免费送合格大证 路虎BWS助力车 踏板车 越野摩托车 BWS磨砂黑</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">3500</span><span class="small-price">.00</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t2395/116/2520303361/549937/2a6f2b2c/570bbd60Na0cb0c21.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">【京东超市】三只松鼠 休闲零食 干脆面串烧味 小贱拉面丸子85g/袋</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">11</span><span class="small-price">.90</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t3097/291/3343006965/88691/67a7ea00/57f130d2N3e3d53b3.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">顾堂 新款仿羊毛汽车座垫 短毛绒汽车坐垫 秋冬季保暖通用女坐垫 大红色 其它车型</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">498</span><span class="small-price">.00</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+					<li class="similar-li bgw pb5 mb5">
+						<a class="color2326 fz12" href="javascript:void(0);">
+							<div class="similar-product">
+								<img class="w" src="//m.360buyimg.com//mobilecms/s276x276_jfs/t3178/307/18025558/213064/5ae954fd/57a03c08N7df24417.jpg!q70.jpg" alt="1" />
+								<span class="similar-product-text multi-lineEllipsis2 lh17 mtb5 parl5">【京东超市】富居(FOOJO)珊瑚绒地垫厨卫入门垫40*60cm七彩羽叶</span>
+								<span class="similar-product-price fz12 parl5">¥<span class="big-price fw600 fz18">15</span><span class="small-price">.00</span><span class="fr guess-button tc color68 displayib mr5">看相似</span></span>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div id="recommendListload" class="tc lh30 patb5">
+					<a id="loadMore" class="color68" href="javascript:void(0);">点击继续加载</a>
+				</div>
+			</div>
+		</div>
+		
+		<!--京东底部-->
+		<div class="jd-footer h200">
+			<div class="jd-footer-links fz12 patb20">
+				<ul class="displayf jscc altc">
+					<li><a class="color68" href="javascript:void(0);">登录</a></li>
+					<li><a class="color68" href="javascript:void(0);">注册</a></li>
+					<li><a class="color68" href="javascript:void(0);">反馈</a></li>
+					<li><a class="color68" href="#">回到顶部</a></li>
+				</ul>
+			</div>
+			<div class="jd-footer-platforms patb10">
+				<ul class="displayf jscc altc">
+					<li class="mrl40 tc"><a class="color68 displayb pr" href="javascript:void(0);">客户端</a></li>
+					<li class="mrl40 tc"><a class="color25 displayb pr" href="javascript:void(0);">触屏版</a></li>
+					<li class="mrl40 tc"><a class="color68 displayb pr" href="javascript:void(0);">电脑版</a></li>
+				</ul>
+			</div>
+			<div class="jd-footer-copyright tc color68 patb20 fz12">Copyright © 2004-2016 京东JD.com 版权所有</div>
+			<div class="jd-footer-copyright-footer"></div>
+		</div>
+		
+		<!--京东导航-->
+		<div class="jd-nav px rl0m b0 bgw">
+			<ul class="displayf jscc">
+				<li class="nav-list tc"><a class="displayb" href="javascript:void(0);"><img src="img/home1.png" alt="1" /></a></li>
+				<li class="nav-list tc"><a class="displayb" href="javascript:void(0);"><img src="img/home2.png" alt="2" /></a></li>
+				<li class="nav-list tc"><a class="displayb" href="javascript:void(0);"><img src="img/home3.png" alt="3" /></a></li>
+				<li class="nav-list tc"><a class="displayb" href="javascript:void(0);"><img src="img/home4.png" alt="4" /></a></li>
+				<li class="nav-list tc"><a class="displayb" href="javascript:void(0);"><img src="img/home5.png" alt="5" /></a></li>
+			</ul>
+		</div>
+		
+	</div>
+	<!--置顶-->
+	<div class="to-top px tc hide">
+		<a class="displayb" href="javascript:void(0);"><img class="w" src="//st.360buyimg.com/m/images/index/scroll-to-top-icon.png"></a>
+	</div>
+	<div id="loading" class="px"></div>
+	<!--jQuery文件-->
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<!--swiper框架文件-->
+	<script type="text/javascript" src="js/swiper/swiper.min.js" ></script>
+	<!--loading文件-->
+	<script type="text/javascript" src="js/wzy_loading.js"></script>
+	<!--工具类文件-->
+	<script type="text/javascript" src="js/wzy_util.js"></script>
+	<!--公共的js文件-->
+	<script src="js/common.js"></script>
+    <script type="text/javascript">
+    	
+    </script>
+</body>
+</html>

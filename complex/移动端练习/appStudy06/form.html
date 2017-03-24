@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML5-Form元素的练习</title>
+		<style type="text/css">
+			*{padding:0;margin:0;}
+			a{text-decoration: none;color: #333;}
+			ul li{list-style:none}
+			body{font-size:14px;font-family: "微软雅黑";}
+			input,textarea,select{font-family: inherit;border:0;outline: none;}
+			.container{width:640px;height:200px;margin:0 auto;}
+			.container table{width: 100%;}
+			.container table tr td:first-child{text-align: right;}
+			.inp{width:100%;height:36px;margin:5px 0;border:1px solid #ccc;text-indent: 0.5em;}
+			.vtop{vertical-align:top;}
+			.inparea{height:120px;padding:6px 0;resize:none;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<form id="loginForm" method="post" action="#" onsubmit="return false">
+				<table>
+					<tbody>
+						<tr>
+							<td>标题：</td>
+							<td><input type="text" name="text" placeholder="请输入标题..." tabindex="1"  autofocus="autofocus" maxlength="10" class="inp"></td>
+						</tr>
+						<tr>
+							<td>密码：</td>
+							<td><input type="password" name="password" placeholder="请输入密码..." tabindex="3" class="inp"></td>
+						</tr>
+						<tr>
+							<td class="vtop">自我介绍：</td>
+							<td><textarea tabindex="2" name="texta" class="inp inparea"></textarea></td>
+						</tr>
+						<tr>
+							<td>省份：</td>
+							<td >
+								<select class="inp" name="city">
+									<option value="1">北京</option>
+									<option value="0">上海</option>
+									<option value="2">成都</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>性别：</td>
+							<td>
+								<input type="radio" name="male" value="0"/>女
+								<input type="radio" name="male" value="1"/>男
+								<input type="radio" name="male" value="2"/>保密
+							</td>
+						</tr>
+						<tr>
+							<td>兴趣爱好：</td>
+							<td>
+								<input type="checkbox" name="hobbys" value="0"/>看书
+								<input type="checkbox" name="hobbys" value="1"/>游泳
+								<input type="checkbox" name="hobbys" value="2"/>逛街
+								<input type="checkbox" name="hobbys" value="2"/>看电影
+								<input type="checkbox" name="hobbys" value="2"/>写代码
+							</td>
+						</tr>
+						<tr>
+							<td>URL类型：</td>
+							<td><input type="url" name="url" class="inp"></td>
+						</tr>
+						
+						<tr>
+							<td>Email类型：</td>
+							<td><input type="email" name="email" class="inp"></td>
+						</tr>
+						
+						<tr>
+							<td>Range类型：</td><!--(音乐播放，音量的控制，进度控制)-->
+							<td><input type="range" name="range" min="0" max="100" value="50" step="2" class="inp"></td>
+						</tr>
+						
+						<tr>
+							<td>数值类型：</td>
+							<td><input type="number" name="number" class="inp"></td>
+						</tr>
+						
+						<tr>
+							<td>手机类型：</td>
+							<td><input type="tel" name="tel" class="inp"></td>
+						</tr>
+						
+						<tr>
+							<td>搜索类型：</td>
+							<td><input type="search" name="search" class="inp"></td>
+						</tr>
+						
+						<tr>
+							<td>颜色类型：</td>
+							<td><input type="color" name="color" class="inp"></td>
+						</tr>
+						<tr>
+							<td>日期类型：</td>
+							<td><input type="date" name="date" class="inp"></td>
+						</tr>
+						<tr>
+							<td>日期类型--月份：</td>
+							<td><input type="month" name="month" class="inp"></td>
+						</tr>
+						<tr>
+							<td>日期类型--星期：</td>
+							<td><input type="week" name="week" class="inp"></td>
+						</tr>
+						<tr>
+							<td>日期类型--时分：</td>
+							<td><input type="time" name="time" class="inp"></td>
+						</tr>
+						<tr>
+							<td>日期类型--年月日，时分：</td>
+							<td><input type="datetime" name="datetime" class="inp"></td>
+						</tr>
+						<tr>
+							<td>日期类型--年月日，时分：</td>
+							<td><input type="datetime-local" name="datetime-local" class="inp"></td>
+						</tr>
+						<tr>
+							<td>请输入金额：</td>
+							<td><input type="range" name="range1" value="50" class="inp"></td>
+						</tr>
+						<tr>
+							<td>当前的金额是：</td>
+							<td><output name="price" name="price">0</output></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" value="提交数据" class="inp"></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				//拿到区间输入控件的值
+				loginForm.range.onchange = function(){
+					console.log(this.value);
+				}
+				loginForm.range1.onchange = function(){
+					loginForm.price.value = this.value;
+				}
+				//拿到颜色面板输入框的六进制的值
+				loginForm.color.onchange = function(){
+					console.log(this.value);
+				}
+				console.log(getFormValue(loginForm));
+			}
+			// 获取表单控件的值，以对象的形式返回，注意空控件必须有name属性
+			function getFormValue(formDom){
+				var formElements = formDom.elements;
+				// 将表单的值放在json中
+				var json = {};
+				for(var i=0,len=formElements.length;i<len;i++){
+					// 拿到表单的每个控件元素类型
+					var type = formElements[i].type.toLowerCase();
+					if(type !="button" && type!="submit" && type!="reset"){
+						// 获取复选框的值
+						if(type == "checkbox" && formElements[i].checked){
+							var value;
+							if(!json[formElements[i].name]){
+								value = formElements[i].value;
+							}else{
+								value +=","+formElements[i].value;
+							};
+							json[formElements[i].name] = {
+								value:value,
+								ele:formElements[i]
+							}
+							// 获取单选框的值
+						}else if(type=="radio" && formElements[i].checked){
+							json[formElements[i].name] = {
+								value:formElements[i].value,
+								ele:formElements[i]
+							}
+							// 获取除了复选框和单选框的其他值
+						}else if(type != "radio" && type!="checkbox"){
+							json[formElements[i].name] = {
+								value:formElements[i].value,
+								ele:formElements[i]
+							}
+						}
+					}
+				};
+				return json;
+			};
+		</script>
+	</body>
+</html>

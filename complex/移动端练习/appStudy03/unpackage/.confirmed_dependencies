@@ -1,0 +1,20 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "css/base.css",
+      "css/common.css",
+      "css/page.css",
+      "font/Font-Awesome-3.2.1/css/font-awesome.min.css",
+      "js/jquery-1.11.2.min.js",
+      "img/music1.jpg",
+      "mp3/01.mp3",
+      "img/music2.jpg",
+      "mp3/02.mp3",
+      "img/pic1.jpg",
+      "font/Font-Awesome-3.2.1/font/fontawesome-webfont.woff"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

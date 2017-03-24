@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>重复性渐变之渐变色制作进度条</title>
+		<style>
+			*{margin:0;padding:0;}
+			.progressBar{width:400px;margin:0 auto;height:30px;border:1px solid #ccc;overflow:hidden;}
+			/*.box{width:300px;height:100%;background:-webkit-repeating-linear-gradient(-35deg,#fff 10px,#000 30px);transition:all 1s linear;}*/
+			.box{width:600px;height:100%;background:-webkit-repeating-linear-gradient(-35deg,red 10px,blue 30px,green 35px);animation:bar 2s infinite linear alternate-reverse;}
+			/*.progressBar:hover .box{margin-left:-200px;}*/
+			@-webkit-keyframes bar{
+				0%{margin-left:-50px;}
+				40%{margin-left:-100px;}
+				80%{margin-left:-150px;}
+				100%{margin-left:-200px;}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="progressBar">
+			<div class="box"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>文字阴影多种应用</title>
+		<style>
+			*{margin:0;padding:0;}
+			h4{font-family: "微软雅黑";font-weight:bold;margin:30px;}
+			.t1{text-shadow:8px 4px 0px #3e2626;box-shadow:2px 2px 3px #111,-2px -2px 3px red;}
+			/*text-shadow用逗号分组属性，可以产生多个文字阴影*/
+			.t2{text-shadow:0px -20px 2px red, 0px -7px 2px blue, 1px 20px 2px green, -10px 0px 2px yellow;}
+			
+			/*文字描边效果 text-shadow:左(x,y)颜色值，上(x,y)颜色值，右(x,y) 颜色值，下(x,y) 颜色值*/
+			.t3{background-color:#ddd;color:#ccc;padding:20px;text-shadow:1px 0 #fff,0 -1px #fff,1px 0 #333,0px 1px #333;}
+			.t4{background-color:#ddd;color:#ccc;padding:20px;text-shadow:-1px 0 #333,0 -1px #333,1px 0 #fff,0px 1px #fff;}
+			.t5{font-size:30px;text-shadow:0 0 10px green;}
+			/*box-shadow:x y 模糊程度blur 模糊扩散spread的范围 颜色;*/
+			/*border-radius:x/y,当有边框时以边框进行描圆边，没有时就以元素的边描圆边*/
+			.box{height:50px;width:50px;background-color:blue;box-shadow:1px 1px 172px 70px red;border-radius:50px/50px;margin:30px;}
+		</style>
+	</head>
+	<body>
+		<div style="width:1000px;margin:0 auto;">
+			<h4 class="t1">这是一个文字阴影例子</h4>
+			<h4 class="t2">这是一个文字阴影例子</h4>
+			<h4 class="t3">这是一个凸文字阴影例子</h4>
+			<h4 class="t4">这是一个凹文字阴影例子</h4>
+			<h4 class="t5">这是一个发光文字阴影例子</h4>
+			<div class="box"></div>
+		</div>
+	</body>
+</html>

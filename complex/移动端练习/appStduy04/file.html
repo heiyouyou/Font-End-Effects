@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>h5中上传控件的使用</title>
+		<style>
+			#box img{width:100px;height:100px;}
+		</style>
+	</head>
+	<body>
+		<form action="#" method="post" enctype="multipart/form-data">
+			<!--multiple可是设置上传控件选择多个文件上传，accept可以设置控件上传的文件类型（MIME）-->
+			<!--<input type="file" multiple="multiple" accept="text/plain" value="选择文件"/>
+			<input type="file" multiple="multiple" accept="image/jpeg" value="选择文件"/>-->
+			
+			<!--要选择多中mime类型的文件进行上传，可以用英文逗号隔开-->
+			<!--<input type="file" multiple="multiple" accept="text/html,image/jpeg" value="选择文件"/>-->
+			<input type="file" multiple="multiple" value="选择文件" id="files"/>
+			<input type="button" onclick="loadFile(this)" value="上传文件"/>
+		</form>
+		<div id="box"></div>
+		<script type="text/javascript">
+			function loadFile(){
+				var fileDom = document.getElementById("files");
+				//通过files属性可以获取到上传控件的文件个数以及详细信息，多个文件是放在fileList中的
+				var fileList = fileDom.files;
+				for(var i=0;i<fileList.length;i++){
+					//name:文件名，type:文件的MIME类型,size:文件的大小
+					console.log(fileList[i].name+"==="+fileList[i].type+"==="+fileList[i].size);
+					console.log(fileList[i]);
+					readFile(fileList[i]);
+				}
+			}
+			//image/jpg image/gif text/plain audio/mp3 --- mime类型
+       		//mime类型:当我们在浏览器访问一个文件还是一个图片，音频，如何去解析你的文件就是通过mime类型。
+       		
+       		/*
+       		 * FileReader
+       		 * 接口方法：
+       		 * readAsArrayBuffer();
+       		 * readAsDataURL();//将图片或者音频进行读取显示
+       		 * readAsText();//读取文本类的文件
+       		 * 接口事件:
+       		 * loadstart:开始读取的触发的事件
+       		 * progress 读取过程执行回调函数，读取大文件的时候可以监听进度
+       		 * load:成功完成加载到文件以后执行的回调函数
+       		 * error:加载失败执行的回调函数
+       		 * abort:文件读取中断执行的回调函数
+       		 * loadend:读取完毕执行的回调函数
+       		 * 
+       		 * 用法:
+       		 * var reader = new FileReader();
+       		 * reader.readAsDataURL(file);
+       		 * reader.onload = function(){
+       		 * 	console.log(this.result);//如果读取成功this.result是读取成功返回的内容
+       		 * };
+       		 * 
+       		 * 
+       		 * */
+       		var box = document.getElementById("box");
+       		function readFile(file){
+	       		//创建一个FileReader对象
+	       		var reader = new FileReader();
+       			//判断是否属于文本类型还是图片或者音频，采取不同的读取方式
+       			if(file.type == "text/plain" || file.type == "text/html"){
+       				reader.readAsText(file);
+       			}else if(file.type == "image/jpeg" ||file.type == "audio/mp3"){
+       				reader.readAsDataURL(file);
+       			};
+       			//监听读取完成的文件
+       			reader.onload = function(){
+       				if(file.type == "text/plain" || file.type == "text/html"){
+       					box.innerText +=this.result;//result可以获取到读取的信息数据
+       					//浏览器解析成html结构来解析
+//     					box.innerHTML +=this.result;//result可以获取到读取的信息数据
+       				}else if(file.type == "image/jpeg"){
+       					box.innerHTML +="<img src='"+this.result+"' alt='"+file.name+"'>"
+       				}else if(file.type == "audio/mp3"){
+       					box.innerHTML +="<audio src='"+this.result+"' controls></audio>"
+       				}
+       			};
+       			reader.onloadstart = function(){
+       				console.log("1=======开始读取");
+       			};
+       			reader.onerror = function(){
+       				console.log("2=======读取失败");
+       			};
+       			reader.onloadend = function(){
+       				console.log("3=======读取结束");
+       			};
+       			reader.onabort = function(){
+       				console.log("4=======读取中止");
+       			}
+       			reader.onprogress = function(){
+       				console.log("4=======读取ing....");
+       			}
+       		}
+		</script>
+	</body>
+</html>

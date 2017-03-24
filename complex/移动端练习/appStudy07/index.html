@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>桌面型系统</title>
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_o88vph57bdszto6r.css"/>
+    <style type="text/css">
+		html,body{overflow: hidden;}]
+		*{padding:0;margin:0;}
+		body{font-family: "微软雅黑";}
+		a{text-decoration: none;}
+		.createFlolder{position:absolute;right:10px;top:10px;background:red;color:#fff;padding:10px;margin-bottom:10px;}
+		.createFlolder:nth-child(1){top:10px}
+		.createFlolder:nth-child(2){top:64px}
+		.createFlolder:nth-child(3){top:118px}
+		.container{position:absolute;top:0;left:0;right:0;bottom:0;background:#333;}
+		.f_items a{color:#fff;}
+		.f_items{width:65px;height:65px;position:absolute;}
+		.f_items span{color:#fff;font-size:12px;display: block;text-align:center;
+			padding: 4px 0;
+			width:58px;
+			text-overflow:ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.f_items i{font-size:48px;}
+	</style>
+</head>
+<body>
+	<div class="container"></div>
+	<div>
+		<a href="javascript:void(0)" data-name="folder" class="createFlolder">创建文件夹</a>
+		<a href="javascript:void(0)" data-name="file" class="createFlolder">创建文件</a>
+		<a href="javascript:void(0)" data-name="img" class="createFlolder">创建图片</a>
+	</div>
+	<script src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+   		$(function(){
+   			//点击创建文件夹
+   			$(".createFlolder").on("click",function(){
+	   			var name = $(this).data("name");
+	   			var stext = $(this).text();
+				var $div = $("<div>");
+				$div.addClass("f_items").data("copen",name).html("<a href='javascript:void(0);'><i class='iconfont icon-"+name+"'></i></a><span>"+stext+"</span>");
+				$(".container").append($div);
+				//每次创建文件夹，都要进行一次重新计算所有元素的坐标
+				layoutIcon();
+   			});
+   			//点击打开指定类型的文件
+   			$(document).on("click",".f_items",function(){
+   				var type = $(this).data("copen");
+   				//调用方法
+   				openType[type]();
+   				
+   			});
+   			//窗口变化重新计算图标的坐标
+   			window.onresize = function(){
+   				layoutIcon();
+   			};
+   			//业务接口功能方法
+   			var openType = {
+   				folder:function(){
+   					alert("打开了文件夹！");
+   				},
+   				file:function(){
+   					alert("打开了文件！");
+   				},
+   				img:function(){
+   					alert("打开了图片！");
+   				}
+   			}
+   			//动态计算图标的位置
+   			function layoutIcon(){
+   				//初始化列数
+   				var cleft = 1;
+   				//初始化行数
+   				var ctop = 0;
+   				//图标的宽高
+   				var wh = 65;
+   				//图标的间隔
+   				var space = 15;
+   				//获取界面最大能够放下的行数
+   				var maxRows = parseInt(window.innerHeight/(wh+space));
+   				//获取容器中的元素进行重新计算坐标
+   				$(".container").children().each(function(index){
+   					//当创建的行数大于最大行数时，进行换列处理
+   					if(ctop>=maxRows){
+   						cleft++;
+   						ctop = 0;
+   					};
+   					//计算图标的坐标
+   					$(this).css({
+   						left:space*cleft+wh*(cleft-1),
+   						top:wh*ctop+space*(ctop+1)
+   					});
+   					//每次循坏计算一个元素，进行迭代
+   					ctop++;
+   				});;
+   			}
+   		});
+    </script>
+</body>
+</html>

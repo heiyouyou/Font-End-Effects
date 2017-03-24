@@ -1,0 +1,10 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "img/bn1.jpg"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

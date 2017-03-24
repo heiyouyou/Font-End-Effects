@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>box属性之元素居中操作</title>
+		<style>
+			*{margin:0;padding:0;}
+			.box{width:1000px;height:400px;background-color:#ccc;margin:0 auto;
+				display:-webkit-box;
+				/*-webkit-box-pack用于调整子元素在布局方向mainX轴的对齐方式类似于flex布局中justify-content
+				 值有：center(x轴方向居中对齐)/start(默认值:x轴方向起点对齐)/end(x轴方向末端对齐)/justify(x轴方向两侧对齐)
+				 * */
+				/*-webkit-box-pack:center;*/
+				-webkit-box-pack:justify;
+				/*-webkit-box-pack:start;*/
+				/*-webkit-box-pack:end;*/
+				/*-webkit-box-align用于调整子元素在布局方向crossY轴的对齐方式类似于flex布局中的align-items
+				 * 值有：start(默认值y轴方向起点对齐)/end(y轴方向的末端对齐)/center(y轴方向的居中对齐)/stretch(y轴方向的高度或者宽度自适应父元素的高度或者宽度)/baseline(元素参照文字基线对齐)
+				 */
+				/*-webkit-box-align:stretch;*/
+				/*-webkit-box-align:baseline;*/
+				-webkit-box-align:center;
+				/*-webkit-box-align:start;*/
+				/*-webkit-box-align:end;*/
+			}
+			.items{
+				box-sizing:border-box;
+				width:200px;
+				/*height:200px;*/
+				text-align: center;
+				font-size:18px;
+				font-weight:bold;
+				line-height:200px;
+			}
+			/*.items:nth-child(1){background-color:red;height:100px;}
+			.items:nth-child(2){background-color:green;height:150px;}
+			.items:nth-child(3){background-color:blue;height:200px;}
+			.items:nth-child(4){background-color:yellow;height:250px;}*/
+			.items:nth-child(1){background-color:red;}
+			.items:nth-child(2){background-color:green;}
+			.items:nth-child(3){background-color:blue;}
+			.items:nth-child(4){background-color:yellow;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="items">1</div>
+			<div class="items">2</div>
+			<div class="items">3</div>
+			<div class="items">4</div>
+		</div>
+	</body>
+</html>

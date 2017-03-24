@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>css3中的选择器使用</title>
+    <style type="text/css">
+    	*{margin:0;padding:0;}
+    	a{display:inline-block;padding:5px;background-color:red;margin:2px;}
+    	/*div{height:50px;display: none;}
+    	#box1{background-color:red;}
+    	#box2{background-color:green;}
+    	#box3{background-color:blue;}
+    	div:target{display: block;}*/
+    	/*:target{display: block;}*/
+    	.items{height:50px;background-color:green;margin-bottom:20px;}
+    	li[class*='it']{font-weight:bold;}
+    	li[class$='ems']{color:#fff;}
+    	li[class^='i']{font-size:24px;}
+    	:root{background-color:gray;}
+    	/*p{width:100px;}
+    	p:empty{height:100px;background-color:red;}
+    	p:first-letter{font-weight:bold;color:#fff;}
+    	p:first-line{background-color:red;}*/
+    	
+    	/*p:after{content:">";color:#111;}
+    	p:before{content:"<";color:#111;}*/
+    	
+    	/*只给p标签加hover使得伪类元素生成*/
+    	/*p:hover:after{content:">";color:blue;font-weight:700;}
+    	p:hover:before{content:"<";color:blue;font-weight:700;}*/
+    	
+    	/*p后面所有子元素都加了伪元素*/
+    	/*p :after{content:">";color:#111;}
+    	p :before{content:"<";color:#111;}*/
+    	
+    	.testa:after{content:attr(alt);color:#fff;}
+    	.testa:before{content:attr(name);color:#fff;}
+    	
+    	.imgbox:after{content:url(img/bn1.jpg);}
+    	.imgbox:before{content:url(img/bn1.jpg);}
+    	
+    	#boxWrap{display:block;}
+    	/*#boxWrap ul li:nth-child(odd){height:50px;background-color:red;}
+    	#boxWrap ul li:nth-child(even){height:50px;background-color:green;}*/
+    	
+    	/*nth-child是从父类中所有子元素排序筛选*/
+    	/*#boxWrap p:nth-child(odd){height:50px;background-color:red;}
+    	#boxWrap p:nth-child(even){height:50px;background-color:green;}*/
+    	
+    	/*nth-of-type是从指定类型子元素中进行排序筛选*/
+    	#boxWrap p:nth-of-type(odd){height:50px;background-color:red;}
+    	#boxWrap p:nth-of-type(even){height:50px;background-color:green;}
+    </style>		
+    <script type="text/javascript">
+    	//url地址没有锚点才进行拼接
+    	if(window.location.href.indexOf("#") == -1){
+   			window.location.href +="#box1"; 
+    	}
+    </script>
+</head>
+<body>
+	<div id="box1">第一张</div>
+	<div id="box2">第二张</div>
+	<div id="box3">第三张</div>
+	<a href="#box1">1</a>
+	<a href="#box2">2</a>
+	<a href="#box3">3</a>
+	<ul>
+		<li class="items">1</li>
+		<li class="items">2</li>
+		<li class="items">3</li>
+		<li class="items">4</li>
+		<li class="items">5</li>
+		<li class="items">6</li>
+	</ul>
+	<p></p>
+	<p><span>的地方地方的</span><span>的地方地方的</span></p>
+</body>
+	<p>的地方地方的的地方地方的的地方地方的的地方地方的的地方地方的的地方地方的的地方地方的的地方地方的</p>
+	<p>的地方地方的</p>
+	<a href="#" class="testa" alt="seo优化" name="你好呀！！！"></a>
+	<div class="imgbox"></div>
+	<div id="boxWrap">
+		<!--<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>-->
+		<p>1p</p>
+		<div>2div</div>
+		<p>3p</p>
+		<div>4div</div>
+		<p>5p</p>
+		<div>6div</div>
+	</div>
+</html>

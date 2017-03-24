@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选中交换元素</title>
+		<style>
+			*{padding:0;margin:0;}
+			a{text-decoration: none;color: #333;}
+			ul li{list-style:none}
+			body{font-size:14px;font-family: "微软雅黑";}
+			input,textarea,select{font-family: inherit;border:0;outline: none;}
+			.container{width:580px;height:480px;background:#ccc;
+				position:fixed;
+				top:50%;
+				left:50%;
+				margin-top:-260px;
+				margin-left:-310px;
+				padding:10px;
+			}
+			.c_leftbox{background:#eee;float:left;width:240px;height:100%;}
+			.c_leftbox li a{background:#999;display: block;padding:6px;border-bottom:1px solid #fff;
+			color:#fff;transition:all 1s;}
+			.c_leftbox li a:hover,.c_leftbox li a.checked{background:#111;}
+			
+			/*按钮组*/
+			.c_bntbox{width:100px;height:100%;background:#fafafa;float:left;position: relative;display:flex;align-items:center;justify-content:center;}
+			.c_bntbox .btnbox{
+				/*position:absolute;
+				top:50%;
+				margin-top:-52px;*/
+				text-align: center;
+			}
+			.c_bntbox a{
+				display: inline-block;width:80px;height:42px;background:#333333;color:#fff;
+				text-align: center;
+				line-height: 42px;
+				margin-bottom: 8px;
+			}
+			.c_rightbox{background:#eee;float:right;width:240px;height:100%;}
+			.c_rightbox li a{background:#999;display: block;padding:6px;border-bottom:1px solid #fff;
+			color:#fff;transition:all 1s;}
+			.c_rightbox li a:hover,.c_rightbox li a.checked{background:#111;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="c_leftbox">
+				<ul id="leftboxlist">
+					<li sort="1"><a href="javascript:void(0);">Javaweb前端学习基地1</a></li>
+					<li sort="2"><a href="javascript:void(0);">Javaweb前端学习基地2</a></li>
+					<li sort="3"><a href="javascript:void(0);">Javaweb前端学习基地3</a></li>
+					<li sort="4"><a href="javascript:void(0);">Javaweb前端学习基地4</a></li>
+					<li sort="5"><a href="javascript:void(0);">Javaweb前端学习基地5</a></li>
+					<li sort="6"><a href="javascript:void(0);">Javaweb前端学习基地6</a></li>
+					<li sort="7"><a href="javascript:void(0);">Javaweb前端学习基地7</a></li>
+					<li sort="8"><a href="javascript:void(0);">Javaweb前端学习基地8</a></li>
+				</ul>
+			</div>
+			<div class="c_bntbox">
+				<div class="btnbox">
+					<a href="javascrpt:void(0);" id="add">添加</a>
+					<a href="javascrpt:void(0);" id="remove">删除</a>
+				</div>
+			</div>
+			<div class="c_rightbox">
+				<ul id="rightboxlist">
+				</ul>
+			</div>
+		</div>
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script>
+			$(function(){
+				//选中
+				$("#leftboxlist").find("a").on("click",function(){
+					$(this).toggleClass("checked");
+				});
+				//添加到右边盒子的功能
+				$("#add").on("click",function(){
+					checkedList("leftboxlist","rightboxlist");
+					sort("rightboxlist",false);
+				});
+				
+				
+				//选中
+				$("#rightboxlist").find("a").on("click",function(){
+					$(this).toggleClass("checked");
+				});
+				//移除右边盒子列表的功能
+				$("#remove").on("click",function(){
+					checkedList("rightboxlist","leftboxlist");
+					sort("leftboxlist",true);
+				});
+				//选中列表的功能
+				function checkedList(id1,id2){
+					var checkedList = $("#"+id1).find("a.checked");
+					if(checkedList.length == 0){
+						alert("请选择列表...");
+						return;
+					}
+					$("#"+id2).append(checkedList.removeClass("checked").parent());
+				}
+				//排序列表，flag为true表示升序，为false表示降序
+				function sort(id,flag){
+					//get()转换jQ对象成js对象
+					var liList = $("#"+id).children().get();
+					//利用原生sort()方法进行排序
+					liList.sort(function(a,b){
+						var asort = a.getAttribute("sort");
+						var bsort = b.getAttribute("sort");
+						return (flag?asort - bsort:bsort - asort);
+					});
+					$("#"+id).append(liList);
+				}
+			});
+		</script>
+	</body>
+</html>

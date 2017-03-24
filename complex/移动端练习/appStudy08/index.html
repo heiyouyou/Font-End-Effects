@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>商品一闪而过的效果之多重背景1</title>
+    <style>
+    	*{margin:0;padding:0;}
+    	/*多重背景，越是写在后面的越在底层，上面层的会覆盖底层的背景，所以要想制作多重背景的效果，图片必须经过特殊的设计*/
+    	.box{
+    		width:600px;height:200px;margin:0 auto;
+    		background-image:-webkit-linear-gradient(-30deg,
+                    rgba(255,255,255,0.1) 0,
+                    transparent 90px,
+                    rgba(255,255,255,0.1) 100px,
+                    transparent 210px,
+                    transparent 240px),url(img/bn2.jpg);
+			background-repeat:no-repeat;
+			background-size:cover;
+			transition:all 1s ease-in-out;
+			background-position:-280px 0,0 0;
+    	}
+		.box:hover{background-position:1300px 0,0 0;}
+    </style>
+    <script type="text/javascript">
+    	
+    </script>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

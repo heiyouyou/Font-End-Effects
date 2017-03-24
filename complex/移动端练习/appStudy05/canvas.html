@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas画圆</title>
+		<style>
+			*{margin:0;padding:0;}
+			body,html{width:100;height:100%;}
+			body{font-size: 14px;font-family: "微软雅黑";background:#111;}
+			.canvasBox{width:1000;height:100%;margin:0 auto;}
+		</style>
+	</head>
+	<body>
+		<div class="canvasBox"><canvas id="canvas" width="1000" height="800">你的浏览器不支持canvas，请升级....</canvas></div>
+		<script>
+			function dom(id){
+				return document.getElementById(id);
+			}
+			window.onload = function(){
+				var canvas = dom("canvas");
+				//获取绘图的2d环境
+				var context = canvas.getContext("2d");
+				//绘制方形
+				//开始绘图的起点，注意每次绘制图形，都要进行执行该方法，并且与closePath()成对出现的，否则会有连线出现
+				context.beginPath();
+				//填充的颜色
+				context.fillStyle = "yellow";
+				//边框的颜色
+				context.strokeStyle = "blue"
+				//绘制方形的边框context.strokeRect(x, y, width, height)
+				context.strokeRect(100,200,200,300);
+				//开始绘制轮廓strokeRect(x, y, width, height)已经包含了stroke()的执行效果
+//				context.stroke();
+				context.closePath();
+				
+				context.beginPath();
+				//开始填充颜色context.fillRect(x,y,w,h);
+				context.fillRect(100,200,200,300);
+				//填充的颜色
+				context.fillStyle = "green";
+				//边框的颜色
+				context.strokeStyle = "red"
+				//绘制方形的边框context.strokeRect(x, y, width, height)
+				context.strokeRect(500,300,200,300);
+				//开始绘制轮廓strokeRect(x, y, width, height)已经包含了stroke()的执行效果
+//				context.stroke();
+				//开始填充方形颜色context.fillRect(x,y,w,h);
+				context.fillRect(500,300,200,300);//fill()填充无效
+				context.closePath();
+				
+				//绘制圆形
+				context.beginPath();
+				//context.arc(x, y, radius, 0, Math.PI * 2);context.fill();context.stroke();
+				context.fillStyle = "red";
+				context.strokeStyle = "green"
+				context.arc(100,100,50,0,Math.PI*2);
+				context.stroke();
+				context.fill();
+				context.closePath();
+				
+				context.beginPath();
+				//绘制圆形绘制圆形context.arc(x, y, radius, 0, Math.PI * 2);context.fill();context.stroke();
+				context.strokeStyle = "green"
+				context.arc(250,100,50,0,Math.PI*2);
+				context.stroke();
+				context.closePath();
+			}
+		</script>
+	</body>
+</html>

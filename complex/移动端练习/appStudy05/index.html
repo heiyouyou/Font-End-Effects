@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>圆中有方，方中有圆</title>
+		<style>
+			*{margin:0;padding:0;}
+			body,html{width:100%;height:100%;overflow:hidden;}
+			body{font-size: 14px;font-family: "微软雅黑";background:#111;}
+			#canvasBox{width:100%;height:100%;margin:0 auto;background-color:#fff;}
+		</style>
+	</head>
+	<body>
+		<div id="canvasBox"><canvas id="canvas">你的浏览器不支持canvas，请升级....</canvas></div>
+		<script>
+			function dom(id){
+				return document.getElementById(id);
+			}
+			//随机rgb颜色
+			function randomColor(){
+				var r = Math.floor(Math.random()*256);
+				var g = Math.floor(Math.random()*256);
+				var b = Math.floor(Math.random()*256);
+				return "rgb("+r+","+g+","+b+")";//IE7不支出rgb
+			};
+			window.onload = function(){
+				var canvasBox = dom("canvasBox");
+				var canvas = dom("canvas");
+				canvas.width = canvasBox.clientWidth;
+				canvas.height = canvasBox.clientHeight;
+				window.onresize = function(){
+					canvas.width = canvasBox.clientWidth;
+					canvas.height = canvasBox.clientHeight;
+				}
+				//获取绘图的2d环境
+				var context = canvas.getContext("2d");
+				var arr = [];
+				//初始创建多个圆的特性
+				setInterval(function(){
+					//圆填充的颜色
+					var r = Math.floor(Math.random()*256);
+					var g = Math.floor(Math.random()*256);
+					var b = Math.floor(Math.random()*256);
+					//圆心x坐标
+					var x = Math.floor((Math.random())*canvas.width);
+					//圆心y坐标
+					var y = Math.floor((Math.random())*canvas.height);
+					//圆的半径
+					var radius = 10;
+					arr.push({
+						r:r,
+						g:g,
+						b:b,
+						x:x,
+						y:y,
+						sradian:0,//起始弧度
+						eradian:Math.PI*2,//终止弧度
+						radius:radius,
+						op:1
+					});
+				},200);
+				
+				setInterval(function(){
+					//每次绘图都进行清除上次留下的图形轨迹：context.clearRect(x,y,w,h)
+					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0;i<arr.length;i++){
+						//半径递增
+						arr[i].radius +=1;
+						//透明度递减
+						arr[i].op -=0.005;
+						//当透明度小于0时，进行剔除数组的圆，降低性能
+						if(arr[i].op<=0){
+							arr.splice(i,1);
+						}
+					};
+					for(var i=0;i<arr.length;i++){
+						//绘制圆形
+						context.beginPath();
+						context.fillStyle = "rgba("+arr[i].x+","+arr[i].y+","+arr[i].radius+","+arr[i].op+")";
+						context.strokeStyle = "rgba("+arr[i].x+","+arr[i].y+","+arr[i].radius+","+arr[i].op+")";
+						context.arc(arr[i].x,arr[i].y,arr[i].radius,arr[i].sradian,arr[i].eradian,false);
+						context.fill();
+						context.stroke();
+						context.closePath();
+						//绘制内方形
+						context.beginPath();
+						context.strokeRect((arr[i].x-arr[i].radius/2),arr[i].y-arr[i].radius/2,arr[i].radius,arr[i].radius);
+						context.fillRect((arr[i].x-arr[i].radius/2),arr[i].y-arr[i].radius/2,arr[i].radius,arr[i].radius);
+						//绘制方形//rect(x,y,w,h)即可用fill()填充颜色，也可以用fillRect()填充
+//						context.rect((arr[i].x-arr[i].radius/2),arr[i].y-arr[i].radius/2,arr[i].radius,arr[i].radius)
+//						context.fill();
+						context.fillRect((arr[i].x-arr[i].radius/2),arr[i].y-arr[i].radius/2,arr[i].radius,arr[i].radius);
+						context.stroke();
+						context.closePath();
+						//再次绘制内圆
+						context.beginPath();
+						context.arc(arr[i].x,arr[i].y,(arr[i].radius/2),arr[i].sradian,arr[i].eradian,false);
+						context.fill();
+						context.beginPath();
+//						//填充文字
+//						context.font = "20px 微软雅黑";
+//						context.fillStyle = "#ccc";
+//						context.fillText("Hi~~~",arr[i].x,arr[i].y);
+					}
+				},1000/60);
+			}
+		</script>
+	</body>
+</html>

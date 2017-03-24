@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>微信节气场景</title>
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <style>
+    	*{margin:0;padding:0;}
+    	html,body{
+			height:100%;
+		}
+		body{
+			font-family:"microsoft yahei";
+		}
+    	.swiper-container{
+    		/*width:320px;
+    		height:480px;*/
+    		height:100%;
+    		width:100%;
+    		background:#fff;
+    	}
+    	.swiper-slide{
+    		width:100%;
+			height:100%;
+			background:url(upload/bg.jpg) no-repeat left top;
+			background-size:100% 100%;
+    	}
+    	img{
+			display:block;
+		}
+		.ani,#array,.txt{
+			position:absolute;
+		}
+		.swiper-pagination-bullet{
+			width: 6px;
+			height: 6px;
+			background: #fff;
+			opacity: .4;
+		}
+		.swiper-pagination-bullet-active{
+			opacity: 1;
+		}
+		@-webkit-keyframes tip{
+			0%{opacity:0;}
+			50%{opacity:1;}
+			100%{opacity:0;}
+		}
+		@-moz-keyframes tip{
+			0%{opacity:0;}
+			50%{opacity:1;}
+			100%{opacity:0;}
+		}
+		@-o-keyframes tip{
+			0%{opacity:0;}
+			50%{opacity:1;}
+			100%{opacity:0;}
+		}
+		@-mz-keyframes tip{
+			0%{opacity:0;}
+			50%{opacity:1;}
+			100%{opacity:0;}
+		}
+		@keyframes tip{
+			0%{opacity:0;}
+			50%{opacity:1;}
+			100%{opacity:0;}
+		}
+		#array{animation:tip 1.2s infinite ease-in-out;z-index:8888;}
+    </style>
+</head>
+<body>
+	<!--在需要运动的元素上面增加类名 ani，和其他的类似插件相同，Swiper Animate需要在元素上指定几个参数：
+	swiper-animate-effect：切换效果，例如 fadeInUp 
+	swiper-animate-duration：可选，动画持续时间（单位秒），例如 0.5s
+	swiper-animate-delay：可选，动画延迟时间（单位秒），例如 0.3s-->
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<section class="swiper-slide">
+				<img src="upload/s1-t2.png" class="ani resize" style="width:100px;height:110px;left:70px;top:185px;z-index:3;" swiper-animate-effect="zoomInDown" swiper-animate-duration="0.5s" swiper-animate-delay="1.5s"  > 
+        <img src="upload/s1-t1.png" class="ani resize" style="width:60px;height:110px;left:220px;top:185px;z-index:3;" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s"  > 
+        <img src="upload/flower.png" class="ani resize" style="width:180px;height:220px;left:0;top:0;z-index:2;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0s"   > 
+        <img src="upload/s1.png"  class="ani resize" style="width:320px;height:200px;left:0px;top:140px;z-index:1;" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s"  >
+			</section>
+			<section class="swiper-slide">
+				<img src="upload/s3-i5.png" class="ani resize" style="width:263px;height:177px;left:31px;top:262px;z-index:5; border-radius:20px;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="2s"  > 
+		      	<img src="upload/s3-i4.png" class="ani resize" style="width:195px;height:163px;left:31px;top:48px;z-index:4;" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="1.3s"  > 
+		        <img src="upload/s2-i3.png" class="ani resize" style="width:212px;height:186px;left:24px;top:36px;z-index:3;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="1s"  > 
+		        <img src="upload/s3-i2.png" class="ani resize" style="width:64px;height:221px;left:237px;top:20px;z-index:2;" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"   > 
+		        <img src="upload/s2-i1.png"  class="ani resize" style="width:42px;height:192px;left:248px;top:27px;z-index:1;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s"  >
+			</section>
+			<section class="swiper-slide">
+				<img src="upload/s2-i5.png" class="ani resize" style="width:263px;height:177px;left:31px;top:262px;z-index:5; border-radius:20px;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="2s"  > 
+      <img src="upload/s2-i4.png" class="ani resize" style="width:195px;height:163px;left:31px;top:48px;z-index:4;" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="1.3s"  > 
+        <img src="upload/s2-i3.png" class="ani resize" style="width:212px;height:186px;left:24px;top:36px;z-index:3;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="1s"  > 
+        <img src="upload/s2-i2.png" class="ani resize" style="width:64px;height:221px;left:237px;top:20px;z-index:2;" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"   > 
+        <img src="upload/s2-i1.png"  class="ani resize" style="width:42px;height:192px;left:248px;top:27px;z-index:1;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s"  >
+			</section>
+			<section class="swiper-slide">
+				<div class="ani resize" style="width:120px;height:110px;left:110px;top:184px;z-index:3;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="1s"  >
+			        <div class="txt">
+				        <p style="width:15px;color:#b60927; display:inline-block; font-size:90%; line-height:1; margin-right:10px;">愿您羊年运旺福旺</p>
+				        <p style="width:15px;color:#b60927; display:inline-block; font-size:90%; line-height:1; margin-right:10px;">条条祝福给您送上</p>
+				        <p style="width:15px;color:#b60927; display:inline-block; font-size:90%; line-height:1;margin-right:10px;">美丽花灯传递吉祥</p>
+				        <p style="width:15px;color:#b60927; display:inline-block; font-size:90%; line-height:1; margin-right:10px;">圆圆汤圆味道芬芳</p>
+			        </div>
+	       		</div>
+		        <div class="ani resize" style="width:60px;height:110px;left:260px;top:185px;z-index:3;color:#b60927; font-size:160%; font-weight:bold;" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="1s"  > 
+		        	<div class="txt">元<br>宵<br>节</div>
+		        </div>
+        		<img src="upload/flower.png" class="ani resize" style="width:180px;height:220px;left:0;top:0;z-index:2;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0s"   > 
+        		<img src="upload/s1.png"  class="ani resize" style="width:320px;height:200px;left:0px;top:140px;z-index:1;" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s"  >
+			</section>
+		</div>
+		<div class="swiper-pagination"></div>  
+		<img id="array" class="resize" src="images/web-swipe-tip.png" style="width:20px;height:15px;top:460px;left:150px;"> 
+	</div>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/swiper.animate.min.js"></script>
+    <script type="text/javascript">
+    	//获取要进行缩放的元素
+    	var resizeDoms = document.querySelectorAll(".resize");
+    	var txtDom = document.querySelectorAll('.txt');
+    	resize();
+    	//等比例缩放元素的宽度、高度、和坐标
+    	function resize(){
+	    	//获取缩放的比例系数以适应pc端和手机端
+	    	var scaleW = window.innerWidth/320;
+	    	var scaleH = window.innerHeight/480;
+    		for(var i=0;i<resizeDoms.length;i++){
+    			resizeDoms[i].style.width=parseInt(resizeDoms[i].style.width)*scaleW+'px';
+			   	resizeDoms[i].style.height=parseInt(resizeDoms[i].style.height)*scaleH+'px';
+			   	resizeDoms[i].style.top=parseInt(resizeDoms[i].style.top)*scaleH+'px';
+			   	resizeDoms[i].style.left=parseInt(resizeDoms[i].style.left)*scaleW+'px'; 
+    		}
+			for (var i=0; i<txtDom.length; i++) {
+				var ss = txtDom[i].style;
+				ss.webkitTransform = ss.MsTransform = ss.msTransform = ss.MozTransform = ss.OTransform =ss.transform='translateX('+(txtDom[i].offsetWidth*(scaleW-1)/2)+'px) translateY('+txtDom[i].offsetHeight*(scaleH-1)/2+'px) scaleX('+scaleW+') scaleY('+scaleH+')';
+			}
+    	}
+   		var myswiper = new Swiper(".swiper-container",{
+   			direction:'vertical',
+   			pagination:'.swiper-pagination',
+   			mousewheelControl : true,//滚动轮切换slide
+   			slideToClickedSlide:true,
+		   	onInit: function(swiper){//回调函数，初始化后执行。可选Swiper实例作为参数。
+		   		swiperAnimateCache(swiper);//现将有动画效果的元素隐藏
+		   		swiperAnimate(swiper);//触发动画的执行
+			},
+		   	onSlideChangeEnd:function(swiper){//slider切换结束时执行。
+				swiperAnimate(swiper);
+		    }	  
+   		});
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>h5智能表单之datalist的使用</title>
+	</head>
+	<body>
+		<form id="loginForm" method="post" action="#">
+			<table>
+				<tbody>
+					<tr><td>姓名</td><td><input type="text" tabindex="1"></td></tr>
+					<tr><td>年龄</td><td><input type="text" tabindex="2"></td></tr>
+					<tr><td>介绍</td><td><input type="text" tabindex="3"></td></tr>
+					<tr>
+						<td>请输入关键词：</td>
+						<td>
+							<!--list的值要与datalist的值一样，才会有下拉列表的效果，并且输入框有自动补全的功能-->
+							<input type="text" name="rp" list="emaillist" tabindex="4">
+							<datalist id="emaillist">
+								<option value="keke@qq.com">keke@qq.com</option>
+								<option value="zkeke@qq.com">zkeke@qq.com</option>
+								<option value="ckeke@qq.com">ckeke@qq.com</option>
+								<option value="dkeke@qq.com">dkeke@qq.com</option>
+								<option value="kezhang@qq.com">kezhang@qq.com</option>
+								<option value="simon@qq.com">simon@qq.com</option>
+							</datalist>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<a href="//www.runoob.com//" tabindex="6"> runoob.com 菜鸟教程</a><br />
+		<a href="//www.google.com/" tabindex="5">Google</a><br />
+		<a href="//www.microsoft.com/" tabindex="7">Microsoft</a>
+		<script>
+
+		</script>
+	</body>
+</html>

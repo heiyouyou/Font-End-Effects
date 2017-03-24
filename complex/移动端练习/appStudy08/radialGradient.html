@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>径向渐变</title>
+		<style>
+			*{margin:0;padding:0;}
+			.box{width:100px;height:100px;margin:0 auto;
+				/*background-image:-webkit-radial-gradient(red,blue,green);*/
+				/*background-image:-webkit-radial-gradient(red 5%,blue 50%,green 80%);*/
+				/*background-image:-webkit-radial-gradient(bottom left, circle, #ace, #f96, #1E90FF);*/
+				/*background-image:-webkit-radial-gradient(bottom left, ellipse, #ace, #f96, #1E90FF);*/
+				background-image:-webkit-radial-gradient(ellipse closest-side, red,blue 10%, green 50%, yellow);
+				/*background-image:-webkit-radial-gradient(ellipse farthest-corner,red,blue 10%,green 50%,yellow);*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+</html>

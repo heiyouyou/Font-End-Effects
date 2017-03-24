@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>swiper的动画使用</title>
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+    <style>
+    	*{margin:0;padding:0;}
+    	.box{width:600px;margin:10px auto;height:500px;}
+    	.box div{width:600px;height:200px;background-color:red;}
+    	.box div:nth-child(2){background-color:yellow;}
+    	.box div:nth-child(3){background-color:green;}
+    	.box div:nth-child(4){background-color:blue;}
+    	.box div:nth-child(5){background-color:#ccc;}
+    	.box p{height:200px;text-align:center;font-size:36px;line-height:200px;}
+    </style>
+</head>
+<body>
+	<div class="box swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><p class="ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.3s" swiper-animate-delay="0.1s">第一个</p></div>
+			<div class="swiper-slide"><p class="ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.3s" swiper-animate-delay="0.1s">第二个</p></div>
+			<div class="swiper-slide"><p class="ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.3s" swiper-animate-delay="0.1s">第三个</p></div>
+			<div class="swiper-slide"><p class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.3s" swiper-animate-delay="0.1s">第四个</p></div>
+			<div class="swiper-slide"><p class="ani" swiper-animate-effect="rotateIn" swiper-animate-duration="0.3s" swiper-animate-delay="0.1s">第五个</p></div>
+		</div>
+		</div>
+	</div>
+	<script src="js/swiper.min.js"></script>	
+	<script src="js/swiper.animate.min.js"></script>	
+    <script type="text/javascript">
+   		var mySwiper = new Swiper('.swiper-container',{
+   			loop: false,//无缝切换
+		    autoplay:false,//自动播放
+		    speed:1000,//自动播放速度
+			effect:"slide",//动画效果：slide' or 'fade' or 'cube' or 'coverflow' or 'flip'
+			onInit:function(swiper){ //Swiper2.x的初始化是onFirstInit
+				swiperAnimateCache(swiper);//隐藏动画元素 
+				swiperAnimate(swiper);//初始化完成开始动画
+			}, 
+			onSlideChangeEnd: function(swiper){ 
+				swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+			} 
+		});
+    </script>
+</body>
+</html>

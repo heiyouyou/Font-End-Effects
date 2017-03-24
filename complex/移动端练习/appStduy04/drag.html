@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>drag的相关方法使用</title>
+		<style>
+			*{margin:0;padding:0;}
+			#drag{width:100px;height:100px;background-color:red;}
+			#container{border:1px solid #ccc;height:300px;margin:20px 0;}
+		</style>
+	</head>
+	<body>
+		<img src="img/bn1.jpg"/>
+		<a href="#">我是默认可以拖拽的a连接</a>
+		<div id="drag" draggable="true">请拖拽我。。</div>
+		<div id="container"></div>
+		<script>
+			var drag = document.getElementById("drag");
+			var container = document.getElementById("container");
+			//拖拽元素开始拖拽时触发事件
+			drag.ondragstart = function(e){
+				this.style.backgroundColor = "blue";
+				this.innerText = "开始拖拽";
+				console.log(e.dataTransfer);
+			};
+			//拖拽元素拖拽过程中触发事件
+			drag.ondrag = function(){
+				this.style.backgroundColor = randomColor();
+				this.innerText = "开始拖拽移动中..";
+			}
+			//拖拽元素拖拽放开时触发事件
+			drag.ondragend = function(){
+				this.style.backgroundColor = "#f60";
+				this.innerText = "拖拽结束..";
+			}
+			//ondragenter事件绑定在要移入的目标元素上，并且在拖拽元素移进2/3在目标元素上时触发
+			container.ondragenter = function(){
+				this.style.backgroundColor = "red";
+				this.innerText = "拖拽进入了目标元素之内...";
+			}
+			//ondragleave事件绑定在要移入的目标元素上，并且在拖拽元素2/3离开目标元素时触发
+			container.ondragleave = function(){
+				this.style.backgroundColor = "blue";
+				this.innerText = "拖拽离开了目标元素...";
+			}
+			//ondrop事件绑定在要移入的目标元素上，并且在拖拽放下移动元素在目标元素上时触发
+			container.ondrop = function(){
+				this.style.backgroundColor = "#111";
+				this.style.color = "#fff";
+				this.innerText = "拖拽结束并且放入了指定目标元素...";
+			}
+			//ondragover事件绑定在要移入的目标元素上，并且在目标元素上移动时触发
+			container.ondragover = function(e){
+				this.style.backgroundColor = randomColor();
+				this.innerText = "在目标元素移动中...";
+				//阻止掉，为什么因为这种在页面几乎不会使用
+				e.preventDefault();
+				return false;
+			}
+			//随机rgb颜色
+			function randomColor(){
+				var r = Math.floor(Math.random()*256);
+				var g = Math.floor(Math.random()*256);
+				var b = Math.floor(Math.random()*256);
+				return "rgb("+r+","+g+","+b+")";//IE7不支出rgb
+			};
+		</script>
+	</body>
+</html>

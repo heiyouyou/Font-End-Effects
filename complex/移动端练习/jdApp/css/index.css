@@ -1,0 +1,84 @@
+/*头部搜索*/
+.jd-logo i{width:56px;background-position:0px -103px;}
+.jd-search-wrap i{background-position:-60px -109px;width:20px;height:20px;}
+.jd-search-wrap input{width:60%;margin:2px 0;}
+/*京东快捷导航*/
+.quick-entry-nav a{width:20%;}
+@media screen and (min-width:414px){
+	.quick-entry-nav img {
+		width:38px;
+		height:38px;
+	}
+}
+@media screen and (min-width: 375px){
+	.quick-entry-nav img {
+		width:34px;
+		height:34px;
+	}
+}
+@media screen and (min-width: 640px){
+	/*html{font-size:18px;}*/
+	.quick-entry-nav img {
+		width:58px;
+		height:58px;
+	}
+}
+/*京东秒杀*/
+.jd-seckill-title{height:34px;line-height:34px;}
+.jd-seckill-title .jd-seckill-more-link{color:#f23030;}
+.seckill-more-icon{height:11px;width:11px;display:inline-block;background:url("../img/arrow_rt.png") no-repeat;background-size:cover;}
+.jd-seckill-slider .seckill-new-item{width:121.333px !important;margin-bottom:10px;}
+/*#seckillul{width:calc(121.333px*18);}*/
+.seckill-new-price{color:#f23030;line-height:16px;height:16px;}
+.seckill-original-price{color:#686868;}
+.seckill-new-link{border-right:1px solid #f0f0f0;}
+/*.seckill-new-link:after{content:"好货";position:absolute;font-size:12px;bottom:0;left:0;color:#fff;padding:0 3px;background-color:#7A44FB;}*/
+.seckill-tip{position:absolute;font-size:12px;bottom:10px;left:10px;color:#fff;padding:0 3px;background-color:#7A44FB;}
+.seckill-new-item:last-child .seckill-new-link{border-right:1px solid transparent;}
+@media screen and (min-width: 640px){
+	.jd-seckill-slider .seckill-new-item{width:196.667px !important;}
+	/*#seckillul{width:calc(196.667px*18);}*/
+}
+
+/*京东活动*/
+.floor-graphic-show .show-img{width:25%;flex-grow:1;}
+
+/*京东楼层*/
+.floor-title{height:43px;background:url("//st.360buyimg.com/m/images/index/floor-tit.png") no-repeat;background-size:cover;}
+.floor-title .title-img{height:73.6%;}
+.floor-title .title-img img{max-height:100%;}
+.floor-container .real-show{width:49%;flex-grow:1;}
+.graphic-btn{padding:0 3px;}
+.more-shop-link{right:10px;bottom:8px;}
+.more-shop-link i{width:12px;height:12px;}
+.shop-name{bottom:0;left:0;right:0;background-color:rgba(0,0,0,0.6);color:#fff;line-height:18px;}
+@media only screen and (min-width: 414px) {
+	.more-shop-link i{width:15px;height:15px;}
+}
+@media only screen and (min-width: 375px) {
+	.more-shop-link i{width:14px;height:14px;}
+}
+.activity-container{min-height:206px;width:100%;background:url("//m.360buyimg.com/mobilecms/jfs/t3055/306/4514180115/23406/90a6a89/584acfe0N1018dd27.jpg!q70.jpg") no-repeat;background-size:cover;}
+
+/*京东推荐*/
+.jd-recommend{background-color:#f0f2f5;}
+.gray-layout{z-index:3;background-color:#f0f2f5;}
+.gray-text{color:#848689;}
+.gray-text:after{content:"";height:1px;background-color:#cbcbcb;position:absolute;top:50%;left:5px;right:5px;}
+.gray-text-img{width:13px;height:13px;background:url("../img/top.png") no-repeat;background-size:cover;}
+#recommendList .similar-li{width:49.5%;}
+#recommendList .similar-li .similar-product-price{color:#f23030;}
+#recommendList .similar-li .similar-product-price .guess-button{width:49px;height:24px;line-height:24px;border:1px solid #bfbfbf;border-radius:4px;}
+#recommendListload{border-top:1px solid #dedede;background-color:#f3f5f7;}
+
+/*京东底部*/
+.jd-footer{background-color:#f8f8f8;color:#848689;}
+.jd-footer-links{border-top:1px solid #dedcdc;border-bottom:1px solid #dedcdc;}
+.jd-footer-links ul li{border-right:1px solid #d7d7d7;padding:1px 20px;}
+.jd-footer-links ul li:last-child{border-right:1px solid transparent;}
+.jd-footer-platforms{border-bottom:1px solid #dedcdc;}
+.jd-footer-platforms ul li a:before{content:"";display:block;width:33px;height:38px;background:url("../img/jd-sprites.png") no-repeat;background-position:-122px -70px;background-size:200px 200px;margin:0 auto;}
+.jd-footer-platforms ul li:nth-of-type(1) a:after{content:"";display:block;width:10px;height:10px;position: absolute;top:2px;right:3px;background:url("../img/jd-sprites.png") no-repeat;background-position: -150px 0;background-size:200px 200px;}
+.jd-footer-platforms ul li:nth-of-type(2) a:before{background-position:-40px -70px;}
+.jd-footer-platforms ul li:nth-of-type(3) a:before{background-position:-80px -70px;}
+.jd-footer-copyright-footer{height: 44px;line-height:44px;color:#848689;}

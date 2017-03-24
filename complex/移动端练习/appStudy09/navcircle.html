@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>扇形菜单</title>
+		<style>
+			*{padding:0;margin:0;}
+	        body{font-size:14px;font-family: "微软雅黑";}
+	        #menu{width:60px;height:60px;position:fixed;right:20px;bottom: 20px;}
+	        #menu_list{height:50px;width:50px;position:relative;margin:4px;}
+	        #menu_list .img{
+	        	border-radius:50%;position:absolute;left:0;top:0;
+	        	background:green;height:50px;width:50px;
+	            text-align: center;
+	            color: #ffffff;
+	            line-height:50px;
+	            cursor:pointer;
+	            overflow:hidden;
+	        }
+	        #slider{
+	        	width:60px;height:60px;
+		        background:red;border-radius: 50%;
+		        position:absolute;left:0;top:0;text-align:center;
+		        line-height:60px;color:#fff;
+	            transition:1s;
+	            cursor:pointer;
+	            overflow:hidden;
+	        }
+		</style>
+	</head>
+	<body>
+		<div id="menu">
+		    <div id="menu_list">
+		        <div class="img"><img src="img/1.jpg" width="55" height="55"/></div>
+		        <div class="img"><img src="img/2.jpg" width="55" height="55"/></div>
+		        <div class="img"><img src="img/3.jpg" width="55" height="55"/></div>
+		        <div class="img"><img src="img/4.jpg" width="55" height="55"/></div>
+		        <div class="img"><img src="img/5.jpg" width="55" height="55"/></div>
+		    </div>
+		    <div id="slider"><img src="img/3.jpg" width="60" height="60"/></div>
+		</div>
+		<script>
+			function dom(id){
+		        return document.getElementById(id);
+		    };
+		    var global = {
+		    	wzy:{}
+		    };
+		    window.onload = function(){
+		    	global.wzy.sectorNav = {
+		    		imgDom:dom("menu_list").children,
+		    		len:function(){
+		    			return this.imgDom.length;
+		    		},
+		    		pdeg:function(){
+		    			return 90/(this.len()-1);
+		    		},
+//		    		pdeg:90/(this.len()-1),//注意：不能这样设置值，因为this只存在函数作用域中
+		    		r:200,
+		    		init:function(){
+				    	this.silderClick();
+				    	this.imgClick();
+		    		},
+		    		silderClick:function(){
+		    			var This = this;
+		    			//切换菜单显示隐藏
+				    	dom("slider").onclick = function(){
+				    		//flag控制显示隐藏
+				    		if(!this.flag){
+				    			this.style.transform = "rotate(360deg)";
+								for(var i=0;i<This.len();i++){
+									//延迟效果
+									This.imgDom[i].style.transition = ".4s "+i*100+"ms";
+//									//获取各个菜单的坐标值
+									var json = This.getLeftTop(This.pdeg()*i,This.r);
+									//注意是负数坐标
+									This.imgDom[i].style.left = -json.l+"px";
+									This.imgDom[i].style.top = -json.t+"px";
+//									This.imgDom[i].style.transform = "rotate("+This.pdeg()*i+"deg) translate("+(-This.r)+"px)";
+									
+								};
+				    		}else{
+				    			//隐藏重归初始状态
+				    			this.style.transform = "rotate(0deg)";
+				    			for(var i=0;i<This.len();i++){
+									This.imgDom[i].style.transition = ".4s "+(This.len()-1-i)*100+"ms";
+									This.imgDom[i].style.left = "0px";
+									This.imgDom[i].style.top = "0px";
+//									This.imgDom[i].style.transform = "rotate(0deg) translate(0px)";
+								};
+				    		}
+				    		//每次点击展开收缩菜单进行变化锁的状态
+				    		this.flag = !this.flag;
+				    	};
+		    		},
+		    		imgClick:function(){
+		    			var This = this;
+		    			for(var i=0;i<This.len();i++){
+					    	This.imgDom[i].onclick = function(){
+					    		this.style.transition = ".2s";
+					    		this.style.transform = "scale(1.4)";
+					    		this.style.opacity = ".8";
+					    		//注意此绑定过渡事件,不要放在点击事件函数外卖，防止重复执行过渡函数
+					    		addTransitionEnd(this,over);
+					    	};
+				    	};
+				    	//过渡结束，菜单回到展开时的初始状态
+				    	function over(){
+				    		this.style.transform = "scale(1)";
+				    		this.style.opacity = "1";
+				    	};
+		    		},
+		    		getLeftTop:function(deg,radial){
+		    			var left = Math.round(Math.sin(deg*Math.PI/180)*radial);
+						var top = Math.round(Math.cos(deg*Math.PI/180)*radial);
+						return {
+							l:left,
+							t:top
+						}
+		    		}
+		    	}
+
+				global.wzy.sectorNav.init();
+
+//		    	var imgDom = dom("menu_list").children;
+//		    	var len = imgDom.length;
+//		    	//获取相邻的两个菜单之间的角度差值
+//		    	var pdeg = 90/(len-1);
+//		    	//扇形的半径
+//		    	var r = 150;
+//		    	for(var i=0;i<len;i++){
+//			    	imgDom[i].onclick = function(){
+//			    		this.style.transition = ".2s";
+//			    		this.style.transform = "scale(1.4)";
+//			    		this.style.opacity = ".8";
+//			    		//注意此绑定过渡事件,不要放在点击事件函数外卖，防止重复执行过渡函数
+//			    		addTransitionEnd(this,over);
+//			    	};
+//		    	};
+//		    	//过渡结束，菜单回到展开时的初始状态
+//		    	function over(){
+//		    		this.style.transform = "scale(1)";
+//		    		this.style.opacity = "1";
+//		    	};
+//		    	//切换菜单显示隐藏
+//		    	dom("slider").onclick = function(){
+//		    		//flag控制显示隐藏
+//		    		if(!this.flag){
+//		    			this.style.transform = "rotate(360deg)";
+//						for(var i=0;i<len;i++){
+//							//延迟效果
+//							imgDom[i].style.transition = ".4s "+i*100+"ms";
+//							//获取各个菜单的坐标值
+//							var json = getLeftTop(pdeg*i,r);
+//							//注意是负数坐标
+//							imgDom[i].style.left = -json.l+"px";
+//							imgDom[i].style.top = -json.t+"px";
+//						};
+//		    		}else{
+//		    			//隐藏重归初始状态
+//		    			this.style.transform = "rotate(0deg)";
+//		    			for(var i=0;i<len;i++){
+//							imgDom[i].style.transition = ".4s "+(len-1-i)*100+"ms";
+//							imgDom[i].style.left = "0px";
+//							imgDom[i].style.top = "0px";
+//						};
+//		    		}
+//		    		//每次点击展开收缩菜单进行变化锁的状态
+//		    		this.flag = !this.flag;
+//		    	};
+//				//根据正余弦函数获取元素的坐标值
+//				function getLeftTop(deg,radial){
+//					var left = Math.round(Math.sin(deg*Math.PI/180)*radial);
+//					var top = Math.round(Math.cos(deg*Math.PI/180)*radial);
+//					return {
+//						l:left,
+//						t:top
+//					}
+//				};
+				//绑定过渡监听的事件
+				function addTransitionEnd(obj,callback){
+					obj.addEventListener("transitionend",callback);
+					obj.addEventListener("WebkitTransitionend",callback);
+				}
+				//移除过渡监听的事件
+				function removeTransitionEnd(obj,callback){
+					obj.removeEventListener("transitionend",callback);
+					obj.removeEventListener("WebkitTransitionend",callback);
+				}
+		    }
+		</script>
+	</body>
+</html>

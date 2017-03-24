@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简易版的时钟</title>
+		<style>
+			*{margin:0;padding:0;}
+			body{font-family:"微软雅黑";background:rgba(41, 39, 39, 0.8);}
+			ul,li{list-style:none;}
+			.clockcontainer{
+				width:202px;height:202px;
+				border:4px solid #ddd;margin:100px auto;
+				background:-webkit-radial-gradient(center,#67604f 0%,#919491 1%,#d0d6b9 47%);
+			}
+			.clockbox{
+				border-radius:50%;
+				position:relative;width:200px;height:200px;border:2px solid #ccc;
+				background:-webkit-radial-gradient(center,#967c7c 3%,#948890 1%,#d0d6b9 47%);
+			}
+			/*圆心*/
+			.clockbox .point{
+				width:8px;height:8px;border-radius:50%;position:absolute;top:50%;left:50%;
+				transform:translate(-4px,-4px);background:yellow;
+					
+			}
+			/*时针*/
+			#clockHour{
+				position:absolute;bottom:50%;left:50%;margin-left:-1.5px;
+				height:40px;width:3px;background:#111;
+				transform-origin:center bottom;
+				/*transform-origin:1.5px 40px;*/
+			}
+			/*分针*/
+			#clockMin{
+				position:absolute;bottom:50%;left:50%;margin-left:-1px;
+				height:60px;width:2px;background:green;
+				transform-origin:center bottom;
+				/*transform-origin:1px 60px;*/
+			}
+			/*秒针*/
+			#clockSec{
+				position:absolute;bottom:50%;left:50%;margin-left:-0.5px;
+				height:80px;width:1px;background:blue;
+				transform-origin:center bottom;
+				/*transform-origin:0.5px 80px;*/
+			}
+			/*刻度*/
+			.clockbox .scale{
+				width:2px;height:6px;background:#111;
+				position:absolute;
+				left:50%;
+				top:0;
+				/*调整旋转的中心点*/
+				transform-origin:0 100px;
+			}
+			/*时针数字*/
+			.clockbox .scale .hourScale{
+				display:inline-block;
+				font-weight:bold;
+				position:relative;
+				left:-4px;
+				top:5px;
+			}
+			.clockbox .scale:nth-of-type(1){transform:rotate(0);}
+			.clockbox .scale:nth-of-type(2){transform:rotate(6deg);}
+			.clockbox .scale:nth-of-type(3){transform:rotate(12deg);}
+			.clockbox .scale:nth-of-type(4){transform:rotate(18deg);}
+			.clockbox .scale:nth-of-type(5){transform:rotate(24deg);}
+			.clockbox .scale:nth-of-type(6){transform:rotate(30deg);}
+			.clockbox .scale:nth-of-type(5n+1){height:10px;background-color:red;}
+			#textTime{text-align:center;color:#fff;}
+		</style>
+	</head>
+	<body>
+		<div class="clockcontainer">
+			<div class="clockbox">
+				<!--圆心-->
+				<div class="point"></div>
+				<!--刻度-->
+				<ul id="scalebox">
+					<!--<li class="scale"></li>
+					<li class="scale"></li>
+					<li class="scale"></li>
+					<li class="scale"></li>
+					<li class="scale"></li>
+					<li class="scale"></li>-->
+				</ul>
+				<!--时分秒-->
+				<div id="clockHour"></div>
+				<div id="clockMin"></div>
+				<div id="clockSec"></div>
+			</div>
+			<div class="clockText"><p id="textTime"></p></div>
+		</div>
+		<script>
+			function dom(id){
+				return document.getElementById(id);
+			}
+			window.onload = function(){
+				var scaleBox = dom("scalebox");
+				var html = "";
+				//创建60个刻度
+				for(var i=0;i<60;i++){
+					//显示时针刻度数字
+					if(i%5==0){
+						//获取3点、6点、9点、12点文字旋转的角度值。
+						var textDeg = (i/5)%3==0?-90*i/5/3:0;
+						html +="<li class='scale hour' style='transform:rotate("+i*6+"deg);'><span class='hourScale' style='transform:rotate("+textDeg+"deg);'>"+(i==0?12:i/5)+"</span></li>"
+					}else{
+						html +="<li class='scale' style='transform:rotate("+i*6+"deg);'></li>"
+					}
+				};
+				scaleBox.innerHTML = html;
+				//时分针的旋转角度计算
+				function move(){
+					var datetime = new Date();
+					var sec = datetime.getSeconds();
+					var min = datetime.getMinutes()+sec/60;
+					var hour = datetime.getHours()+min/60;
+					//秒针走一小格就是6deg
+					dom("clockSec").style.transform = "rotate("+sec*6+"deg)";
+					//分针走每一小格就是6度
+					dom("clockMin").style.transform = "rotate("+min*6+"deg)";
+					//时针每一小格就是30度
+					dom("clockHour").style.transform = "rotate("+hour*30+"deg)";
+				};
+				move();
+				currentTime(dom("textTime"));
+				setInterval(function(){
+					move();
+					currentTime(dom("textTime"));
+				},1000);
+				//封装当前系统动态时间的方法
+				function currentTime(obj){
+					var timers = new Date();
+					var years = timers.getFullYear();
+					var months = timers.getMonth()+1;
+					var date = timers.getDate();
+					var day = timers.getDay();
+					var hour = timers.getHours();
+					var minutes = timers.getMinutes();
+					var seconds = timers.getSeconds();
+					switch (day){
+						case 0:
+						day = "星期天";
+						break;
+						case 1:
+						day = "星期一";
+						break;
+						case 2:
+						day = "星期二";
+						break;
+						case 3:
+						day = "星期三";
+						break;
+						case 4:
+						day = "星期四";
+						break;
+						case 5:
+						day = "星期五";
+						break;
+						case 6:
+						day = "星期六";
+						break;
+					};
+					function two(key){
+						key<10?key = "0"+key:key = key;
+						return key;
+					}
+					obj.innerText = years+"年"+months+"月"+date+"日"+day+two(hour)+":"+two(minutes)+":"+two(seconds);
+				};
+			}
+		</script>
+	</body>
+</html>

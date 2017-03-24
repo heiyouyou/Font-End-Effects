@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>文字轮廓剪裁背景</title>
+		<style>
+			*{margin:0;padding:0;}
+			.box{width:400px;height:200px;
+				margin:0 auto;
+				font-weight:bolder;
+				font-size:78px;
+				text-align:center;
+				line-height:200px;
+				color:rgba(0,0,0,0);/*字体颜色必须为透明才有效果*/
+				background:url(img/small.jpg) #111;
+				background-clip:text;/*设置文字来进行描绘背景*/
+				-webkit-background-clip:text;
+				transition:all 1s ease;
+			}
+			.box:hover{background-position:1000px 100px;}
+		</style>
+	</head>
+	<body>
+		<div class="box">微信小程序</div>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>弹性盒布局之box1</title>
+		<style>
+			*{margin:0;padding:0;}
+			.box{
+				max-width:800px;
+				min-height:200px;
+				background-color:#ccc;
+				margin:0 auto;
+				display:-webkit-box;
+				/*-webkit-box-orient默认值:horizontal(水平方向)，vertical(垂直方向)控制子元素的布局方向，类似flex中的flex-direction*/
+				/*-webkit-box-orient:horizontal;*/
+				
+				-webkit-box-orient:vertical;
+				/*-webkit-box-direction控制元素的排序方向，默认值:normal(正向)，reverse(反向)，类似flex中的flex-direction:row-reverse/column-reverse;*/
+				/*-webkit-box-direction:reverse;*/
+				display:-moz-box;
+			}
+			.items{
+				box-sizing:border-box;
+				/*width:200px;*/
+				/*-webkit-box-flex:自动按照布局方向以及分配的值来增加子元素的宽度或者高度，类似于flex-grow效果-
+				 *  公式：子元素的尺寸 = (外层盒子尺寸-各子元素宽度或者高度 )* 子元素的box-flex的值 / 所有子元素box-flex的总和。
+				 */
+				/*-webkit-box-flex:1;*/
+				/*height:200px;*/
+				text-align: center;
+				font-size:18px;
+				font-weight:bold;
+				/*line-height:200px;*/
+			}
+			.items:nth-child(1){background-color:red;-webkit-box-flex:1;}
+			.items:nth-child(2){background-color:green;-webkit-box-flex:2;}
+			.items:nth-child(3){background-color:blue;-webkit-box-flex:3;}
+			.items:nth-child(4){background-color:yellow;-webkit-box-flex:4;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="items">1</div>
+			<div class="items">2</div>
+			<div class="items">3</div>
+			<div class="items">4</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>线性渐变1</title>
+		<style>
+			body{
+				/*早期谷歌浏览器支持的格式：
+				 * -webkit-gradient(type,x1 y1,x2 y2, color-stop(positon,color),color-stop(positoncolor))
+				 * x1 y1 x2 y2只支持百分比或者left/right/top/bottom的组合
+				 */
+				/*background-image:-webkit-gradient(linear, left top, right bottom, color-stop(0%,#000000),color-stop(100%,#ffffff));*/
+				/*background-image:-webkit-gradient(linear, 10% 20%, 90% 100%, color-stop(0%,#000000),color-stop(100%,#ffffff));*/
+				background-image:-webkit-gradient(linear,center top,center bottom,color-stop(0%,#111),color-stop(100%,#fff));
+				background-image:-webkit-gradient(linear,center top,center bottom,from(#111), to(#fff));
+           	 	}
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(top right,red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(top left,red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(bottom left,red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(bottom right,red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(right,red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(left,red,blue);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(top left,red 10%,blue 50%);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(top left,red 10px,blue 150px);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(-10deg,red 100px,blue 150px);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(10deg,red 100px,blue 150px);}*/
+			
+			/*.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(bottom,red,blue,green,yellow);}*/
+			.box{width:400px;height:400px;margin:0 auto;background-image:-webkit-linear-gradient(top,red 10%,blue 50%,green 80%,yellow 100%);}
+
+			/*注意渐变色属于背景图background-image中的一员，所以可以用background-size,background-repeat,background-attachement等有关背景图的属性来控制渐变色
+			 * 第一种形式：-webkit-linear-gradient([position|angle],color,color1,color2,colo3....);
+			 * 第二种形式：-webkit-linear-gradient([position|angle],color [pos],color1 [pos],color2 [pos],colo3 [pos]....);
+			 * 第三种形式：-webkit-linear-gradient([position|angle],color [0%],color1 [10%],color2 [pos],colo3 [pos]....);
+			 *position:
+                top left
+                top 默认值
+                top right
+                left
+                right
+                bottom left
+               	bottom
+                bottom right
+            	angle:10deg 100deg 60deg -10deg，负角度顺时针，正角度逆时针
+			 */
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+</html>

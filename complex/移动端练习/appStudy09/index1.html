@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>聚光灯效果的文字</title>
+		<style>
+			*{margin:0;padding:0;}
+			html{height:100%;}
+    		body{height:100%;}
+    		.box{
+		        height:100%;
+		        background:#111;
+		        text-align: center;
+		        font-size:30px;
+		        font-family: "微软雅黑";
+		        line-height: 200px;
+		    }
+    		.box h1{
+    			display: inline-block;
+    			color:rgba(255,255,255,0.1);
+    			padding:20px;
+    			background:-webkit-linear-gradient(
+    				-30deg,
+		            rgba(255,255,255,0) 150px,
+		            rgba(255,255,255,1) 180px,
+		            rgba(255,255,255,1) 240px,
+		            rgba(255,255,255,0) 300px
+    			) no-repeat -500px;
+    			-webkit-background-clip:text;
+    			-moz-background-clip:text;
+    			/*transition:all 2s linear;*/
+    		}
+    		/*.box h1:hover{
+    			background-position:1000px 0;
+    		}*/
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1 id="text">我是一名web开发者</h1>
+		</div>
+		<script>
+			var x = -500;
+			var hdom = document.getElementById("text");
+			var timer = setInterval(function(){
+				x +=10;
+				if(x>700){
+					x = -500;
+				};
+				hdom.style.backgroundPosition = x+"px 0";
+			},25);
+		</script>
+	</body>
+</html>

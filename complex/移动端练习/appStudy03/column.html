@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>css3重的多栏布局</title>
+		<style>
+			*{margin:0;padding:0;}
+			.container,.box{text-align:center;width:1000px;margin:20px auto;}
+			/*column-span可以设置某列进行跨多少列显示*/
+			h1{column-span: all;}
+			
+			/*column-count设置一个盒子内容的列数，宽度自动计算分配*/
+			/*.container{column-count:4;}*/
+			/*column-width设置列的宽度，但是多列的总和不能超过该盒子的宽度，否则column-count无效，最终以column-width为计算盒子的列数，如果column-width大于盒子的宽度，则多栏布局无效*/
+			/*.container{column-count:4;column-width:200px;}*/
+			/*.container{column-count:4;column-width:400px;}*/
+			/*.container{column-count:4;column-width:1200px;}无效*/
+			
+			/*column-gap设置盒子多栏之间的间隙，column-rule设置盒子之间的边框线*/
+			/*实际上盒子的宽度width = colum-width*column-count + column-gap*(column-count-1)*/
+			/*.container{column-count:4;column-width:200px;column-gap:20px;column-rule:1px solid red;}*/
+			
+			/*columns是属于column-width和column-count的复合属性形式，值先后不讲究*/
+			.container{-webkit-columns:200px 4;-moz-columns:4 200px;columns:4 200px;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>没有使用column</h1>
+			<img src="http://img-cdn.luoo.net/pics/vol/5834647b3c191.jpg?imageView2/1/w/640/h/452" alt="" />
+			作者：徐尤熙
+			链接：https://www.zhihu.com/question/38773260/answer/78012583
+			来源：知乎
+			著作权归作者所有，转载请联系作者获得授权。
+			
+			【HTML DIV+CSS 命名规范大全】
+			
+			
+			网页制作中规范使用DIV+CSS命名规则，可以改善优化功效特别是团队合作时候可以提供合作制作效率，具体DIV CSS命名规则CSS命名大全内容篇。
+			常用DIV+CSS命名大全集合，即CSS命名规则
+			我们开发CSS+DIV网页（Xhtml）时候,比较困惑和纠结的事就是CSS命名，特别是新手不知道什么地方该如何命名，怎样命名才是好的方法。
+			一、命名规则说明
+			1、所有的命名最好都小写
+			2、属性的值一定要用双引号("")括起来，且一定要有值如 class="helloweb" , id="helloweb"
+			3、每个标签都要有开始和结束，且要有正确的层次，排版有规律工整
+			4、空元素要有结束的tag或于开始的tag后加上"/"
+			5、表现与结构完全分离，代码中不涉及任何的表现元素，如：style、font、bgColor、border 等
+			6、到的定义，应遵循从大到小的原则，体现文档的结构，并有利于搜索引擎的查询。
+			7、给每一个表格和表单加上一个唯一的、结构标记 id
+			8、给图片加上alt 标签，优点是在于在图片发生错误时，alt 可以体现给用户
+			9、尽量使用英文命名原则
+			10、尽量不缩写，除非一看就明白的单词
+			下面给大家介绍常见CSS命名和DIV CSS命名方法。
+			二、相对网页外层重要部分CSS样式命名
+			外套 wrap ------------------用于最外层
+			头部 header ---------------用于头部
+			主要内容 main ------------用于主体内容（中部）
+			左侧 main-left -------------左侧布局
+			右侧 main-right -----------右侧布局
+			导航条 nav -----------------网页菜单导航条
+			内容 content --------------用于网页中部主体
+			底部 footer -----------------用于底部
+			三、DIV+CSS命名参考表
+			以下为CSS样式命名与CSS文件命名参考表，DIV CSS命名集合：
+			①CSS样式命名说明网页公共命名#wrapper页面外围控制整体布局宽度#container或#content容器；
+			②用于最外层#layout布局#head, #header页头部分#foot, #footer页脚部分#nav主导航#subnav二级导航#menu菜单#submenu子菜单#sideBar侧栏#sidebar_a, #sidebar_b左边栏或右边栏#main页面主体#tag标签#msg #message提示信息#tips小技巧#vote投票#friendlink友情连接#title标题；
+			
+			③#summary摘要#loginbar登录条#searchInput搜索输入框#hot热门热点#search搜索#search_output搜索输出和搜索结果相似#searchBar搜索条#search_results搜索结果#copyright版权信息#branding
+			
+			④商标#logo网站LOGO标志#siteinfo网站信息#siteinfoLegal法律声明#siteinfoCredits信誉#joinus加入我们#partner合作伙伴#service服务#regsiter注册arr/arrow箭头#guild指南#sitemap网站地图#list列表#homepage首页#subpage二级页面子页面#tool, #toolbar工具条#drop下拉#dorpmenu下拉菜单
+			
+			⑤#status状态#scroll滚动.tab标签页.left .right .center居左、中、右.news新闻.download下载.banner广告条(顶部广告条)电子贸易相关.products产品.products_prices产品价格.products_description产品描述.products_review产品评论.editor_review编辑评论.news_release最新产品.publisher生产商.screenshot缩略图.faqs常见问题.keyword关键词.blog博客.forum论坛
+			
+			⑥CSS文件命名说明master.css,style.css主要的module.css模块base.css基本共用layout.css布局，版面themes.css主题columns.css专栏font.css文字、字体forms.css表单mend.css补丁print.css打印
+			CSS命名其它说明：
+			DIV+CSS命名小结：无论是使用“.”（小写句号）选择符号开头命名，还是使用“#”(井号)选择符号开头命名都无所谓，但我们最好遵循，主要的、重要的、特殊的、最外层的盒子用“#”(井号)选择符号开头命名，其它都用“.”（小写句号）选择符号开头命名，同时考虑命名的CSS选择器在HTML中重复使用调用。
+			通常我们最常用主要命名有：wrap（外套、最外层）、header（页眉、头部）、nav(导航条)、menu(菜单)、title(栏目标题、一般配合h1\h2\h3\h4标签使用)
+			、content (内容区)、footer(页脚、底部)、logo（标志、可以配合h1标签使用）、banner（广告条，一般在顶部）、copyRight（版权）。其它可根据自己需要选择性使用。
+			建议：主要的、重要的、最外层的盒子用“#”(井号)选择符号开头命名，其它都用“.”（小写句号）选择符号开头命名。
+			2.CSS样式文件命名如下：
+			主要的 master.css
+			布局，版面 layout.css
+			专栏 columns.css
+			文字 font.css
+			打印样式 print.css
+			主题 themes.css
+			四、英文命名技巧
+			如果遇到不常用的，可以借助翻译工具进行翻译取其英文命名。
+			以上为DIV+CSS的命名规则总结，相信通过规范的CSS 命名会给你以后做网站网页的维护带来方便。
+			
+			更多好文章与资源：
+		</div>
+		<div class="container">
+			<h1>使用了column</h1>
+			<img src="http://img-cdn.luoo.net/pics/vol/5834647b3c191.jpg?imageView2/1/w/640/h/452" alt="" />
+			作者：徐尤熙
+			链接：https://www.zhihu.com/question/38773260/answer/78012583
+			来源：知乎
+			著作权归作者所有，转载请联系作者获得授权。
+			
+			【HTML DIV+CSS 命名规范大全】
+			
+			
+			网页制作中规范使用DIV+CSS命名规则，可以改善优化功效特别是团队合作时候可以提供合作制作效率，具体DIV CSS命名规则CSS命名大全内容篇。
+			常用DIV+CSS命名大全集合，即CSS命名规则
+			我们开发CSS+DIV网页（Xhtml）时候,比较困惑和纠结的事就是CSS命名，特别是新手不知道什么地方该如何命名，怎样命名才是好的方法。
+			一、命名规则说明
+			1、所有的命名最好都小写
+			2、属性的值一定要用双引号("")括起来，且一定要有值如 class="helloweb" , id="helloweb"
+			3、每个标签都要有开始和结束，且要有正确的层次，排版有规律工整
+			4、空元素要有结束的tag或于开始的tag后加上"/"
+			5、表现与结构完全分离，代码中不涉及任何的表现元素，如：style、font、bgColor、border 等
+			6、到的定义，应遵循从大到小的原则，体现文档的结构，并有利于搜索引擎的查询。
+			7、给每一个表格和表单加上一个唯一的、结构标记 id
+			8、给图片加上alt 标签，优点是在于在图片发生错误时，alt 可以体现给用户
+			9、尽量使用英文命名原则
+			10、尽量不缩写，除非一看就明白的单词
+			下面给大家介绍常见CSS命名和DIV CSS命名方法。
+			二、相对网页外层重要部分CSS样式命名
+			外套 wrap ------------------用于最外层
+			头部 header ---------------用于头部
+			主要内容 main ------------用于主体内容（中部）
+			左侧 main-left -------------左侧布局
+			右侧 main-right -----------右侧布局
+			导航条 nav -----------------网页菜单导航条
+			内容 content --------------用于网页中部主体
+			底部 footer -----------------用于底部
+			三、DIV+CSS命名参考表
+			以下为CSS样式命名与CSS文件命名参考表，DIV CSS命名集合：
+			①CSS样式命名说明网页公共命名#wrapper页面外围控制整体布局宽度#container或#content容器；
+			②用于最外层#layout布局#head, #header页头部分#foot, #footer页脚部分#nav主导航#subnav二级导航#menu菜单#submenu子菜单#sideBar侧栏#sidebar_a, #sidebar_b左边栏或右边栏#main页面主体#tag标签#msg #message提示信息#tips小技巧#vote投票#friendlink友情连接#title标题；
+			
+			③#summary摘要#loginbar登录条#searchInput搜索输入框#hot热门热点#search搜索#search_output搜索输出和搜索结果相似#searchBar搜索条#search_results搜索结果#copyright版权信息#branding
+			
+			④商标#logo网站LOGO标志#siteinfo网站信息#siteinfoLegal法律声明#siteinfoCredits信誉#joinus加入我们#partner合作伙伴#service服务#regsiter注册arr/arrow箭头#guild指南#sitemap网站地图#list列表#homepage首页#subpage二级页面子页面#tool, #toolbar工具条#drop下拉#dorpmenu下拉菜单
+			
+			⑤#status状态#scroll滚动.tab标签页.left .right .center居左、中、右.news新闻.download下载.banner广告条(顶部广告条)电子贸易相关.products产品.products_prices产品价格.products_description产品描述.products_review产品评论.editor_review编辑评论.news_release最新产品.publisher生产商.screenshot缩略图.faqs常见问题.keyword关键词.blog博客.forum论坛
+			
+			⑥CSS文件命名说明master.css,style.css主要的module.css模块base.css基本共用layout.css布局，版面themes.css主题columns.css专栏font.css文字、字体forms.css表单mend.css补丁print.css打印
+			CSS命名其它说明：
+			DIV+CSS命名小结：无论是使用“.”（小写句号）选择符号开头命名，还是使用“#”(井号)选择符号开头命名都无所谓，但我们最好遵循，主要的、重要的、特殊的、最外层的盒子用“#”(井号)选择符号开头命名，其它都用“.”（小写句号）选择符号开头命名，同时考虑命名的CSS选择器在HTML中重复使用调用。
+			通常我们最常用主要命名有：wrap（外套、最外层）、header（页眉、头部）、nav(导航条)、menu(菜单)、title(栏目标题、一般配合h1\h2\h3\h4标签使用)
+			、content (内容区)、footer(页脚、底部)、logo（标志、可以配合h1标签使用）、banner（广告条，一般在顶部）、copyRight（版权）。其它可根据自己需要选择性使用。
+			建议：主要的、重要的、最外层的盒子用“#”(井号)选择符号开头命名，其它都用“.”（小写句号）选择符号开头命名。
+			2.CSS样式文件命名如下：
+			主要的 master.css
+			布局，版面 layout.css
+			专栏 columns.css
+			文字 font.css
+			打印样式 print.css
+			主题 themes.css
+			四、英文命名技巧
+			如果遇到不常用的，可以借助翻译工具进行翻译取其英文命名。
+			以上为DIV+CSS的命名规则总结，相信通过规范的CSS 命名会给你以后做网站网页的维护带来方便。
+			
+			更多好文章与资源：
+		</div>
+	</body>
+</html>

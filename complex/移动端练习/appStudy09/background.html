@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>background的相关属性使用</title>
+		<style>
+			*{margin:0;padding:0;}
+			.box{
+				width:400px;height:300px;
+				/*box-sizing:border-box;*/
+				margin:0 auto;
+				border:15px solid rgba(0,0,0,0.2);
+				padding:15px;
+				background: url(img/bn2.jpg);
+				background-size:cover;
+				background-position:0 0;
+				/*background-size:contain;*/
+				/*
+				 background-size:cover(会覆盖容器所有的空白区域)/containt(保持图片的不失真，而是图片完全显示在容器中)
+				 * */
+				
+				/*background-clip: padding-box;*/
+				background-clip: border-box;
+				/*background-clip: content-box;*/
+				/*
+				 padding-box（默认值，是从具有padding的起始位置开始剪裁背景图，边框会出现图片）
+				 border-box（是从具有border的起始位置开始剪裁背景图，padding处会出现图片）
+				 padding-box（是从具有内容区域的起始位置开始剪裁背景图，只在内容区域出现图片）
+				 * */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片的倒影</title>
+		<style>
+			*{margin:0;padding:0;}
+        	body{background:#111;}
+        	.box{margin:50px auto;width:620px;height:250px;}
+        	/*
+                box-reflect:倒影
+                -webkit-box-reflect:方向[above/right/below/left] [距离 10px] [渐变 -linear-gradient]，注意渐变的颜色只有设置rgba或者hsla的颜色才会有效果，而且倒影的方向与源映像是一一对应的
+            */
+        	img{width:100%;height:100%;display:block;-webkit-box-reflect:below 10px -webkit-linear-gradient(bottom,rgba(0, 0, 0, 0.2) 0%,rgba(0, 0, 0, 0)) 50%;}
+        	/*img{width:100%;height:100%;display:block;-webkit-box-reflect:below 10px -webkit-linear-gradient(top,hsla(0, 9%, 4%, 0.1),hsla(240, 68%, 15%, 0.9));}*/
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<img src="img/bn2.jpg"/>
+		</div>
+	</body>
+</html>

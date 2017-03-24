@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>h5拖拽实现购物车功能</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<style>
+			.container{width:1200px;margin:0 auto;background-color:#ccc;}
+			.items-list,.accountList{float:left;margin:5px;}
+			.items-list img,.accountList img{width:250px;height:200px;}
+			.items-list p,.accountList p{text-align: center;font-size:18px;font-weight:bold;}
+			.items-list span,.accountList span{display:block;text-align:center;font-size:18px;}
+			#shop-box{min-height:250px;border:2px dashed #222;margin:20px 0;}
+			#shop-box #tip{line-height:250px;text-align:center;font-size:20px;color:#222;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<ul style="overflow:hidden;">
+				<li class="items-list" draggable="true" data-id="0">
+					<img src="img/03.png" alt="" draggable="false" />
+					<p>商品一</p>
+					<span>22.5</span>
+				</li>
+				<li class="items-list" draggable="true" data-id="1">
+					<img src="img/04.jpg" alt="" draggable="false"/>
+					<p>商品二</p>
+					<span>2.5</span>
+				</li>
+				<li class="items-list" draggable="true" data-id="2">
+					<img src="img/05.jpg" alt="" draggable="false"/>
+					<p>商品三</p>
+					<span>7</span>
+				</li>
+			</ul>
+			<div id="shop-box">
+				<p id="tip">请将以上商品拖入该区域进行结算...</p>
+				<ul id="shop-ul" style="overflow:hidden;"></ul>
+			</div>
+			<h2 style="padding:10px;">总额为:<span id="allPrice">0元</span></h2>
+		</div>
+		<script type="text/javascript">
+				var itemslist = document.getElementsByClassName("items-list");
+				for(var i=0,len=itemslist.length;i<len;i++){
+					//开始给拖拽商品绑定拖拽事件
+					itemslist[i].addEventListener("dragstart",function(e){
+//						console.log(this.innerHTML);
+//						e.dataTransfer.setData(key,value), HTML5标准中dataTransfer对象可以保存的数据必须有key，key只能叫“text/html”或“text/uri-list”或“Files”；
+						//获取指定拖放元素的信息来设置事件数据
+						e.dataTransfer.setData("text",e.target.innerHTML);
+						//获取拖放商品的唯一标示用于累加数量
+						e.dataTransfer.setData("id",e.target.getAttribute("data-id"));
+					});
+				}
+				var shopBox = document.getElementById("shop-box");
+				var tip = document.getElementById("tip");
+				var shopUl = document.getElementById("shop-ul");
+				var allPrice = document.getElementById("allPrice");
+				//用来存放商品唯一标识用的
+				var sid = [];
+				//给目标元素绑定拖放结束事件
+				shopBox.addEventListener("drop",function(e){			
+					tip.style.display = "none";
+					//获取拖放元素的商品信息
+					var shopInfo = e.dataTransfer.getData("text");
+					var shopId = e.dataTransfer.getData("id");
+					//判断已经存在购物车的商品只进行价格相加，否则添加进购物车，言外之意就是if代码块里面的东西只进入一次
+					if(sid.indexOf(shopId) == -1){
+						//购物车没有该商品则进行添加
+						var liDom = document.createElement("li");
+						liDom.className = "accountList";
+						//该id用于后面的else语句改变相同商品的金额
+						liDom.id = shopId+"_target";
+						//为购物车添加商品详细信息
+						liDom.innerHTML = shopInfo;
+						shopUl.appendChild(liDom);
+						//每次拖入的商品进行价格累加，注意转换成Number类型进行计算
+						sid.push(shopId);
+						//给每个商品设置价格标示
+						liDom.setAttribute("price",liDom.children[2].innerText);
+					}else{
+						//相同商品只进行价格累加
+						var targetLi = document.getElementById(shopId+"_target");
+						targetLi.children[2].innerText = targetLi.children[2].innerText*1 + targetLi.getAttribute("price")*1;
+					}
+					totalPrice();
+					this.style.borderStyle = "dashed";
+					//阻止拖拽结束打开新标签页面效果无效
+					e.preventDefault();
+//					e.returnValue = false;
+				});
+				//计算购物车中的所有商品价格
+				function totalPrice(){
+					var accountList = document.getElementsByClassName("accountList");
+					var sprice = 0;
+					for(var i=0;i<accountList.length;i++){
+						sprice += accountList[i].children[2].innerText * 1;
+					}
+					allPrice.innerText = sprice;
+				}
+				//拖拽进目标元素
+				shopBox.addEventListener("dragenter",function(){
+					this.style.borderStyle = "solid";
+				});
+				//拖拽离开目标元素
+				shopBox.addEventListener("dragleave",function(){
+					this.style.borderStyle = "dashed";
+				});
+		</script>
+	</body>
+</html>

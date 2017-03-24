@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>outline外边框</title>
+		<style>
+			*{padding:0;margin:0;}
+			.box{border:2px solid red;width:300px;margin:20px auto;}
+			p{margin:5px;}
+			/*border与outline可以设置边框效果，前者会有文档流，影响布局，后者不会影响布局*/
+			.outline:hover{border:5px solid red;}
+			/*outline的属性值与border一样，不过outline-offset可以设置内外边框，负数时外内边框，正数时为外边框，并且只能单独设置，不可以作为outline中的符合属性设置*/
+			.outline1:hover{outline:5px solid red;outline-offset:-5px;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<p><input class="outline" type="text" /></p>
+			<p><input class="outline" type="text" /></p>
+			<p><input class="outline" type="text" /></p>
+			<p><input class="outline" type="text" /></p>
+			<p><input class="outline" type="text" /></p>
+			<p><input class="outline1" type="text" /></p>
+			<p><input class="outline1" type="text" /></p>
+			<p><input class="outline1" type="text" /></p>
+			<p><input class="outline1" type="text" /></p>
+			<p><input class="outline1" type="text" /></p>
+		</div>
+	</body>
+</html>

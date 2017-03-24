@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>h5的地理定位使用</title>
+		<style>
+			*{margin:0;padding:0;}
+			html{height:100%}  
+			body{height:100%;margin:0px;padding:0px}  
+			#container{height:100%}  
+		</style>
+	</head>
+	<body>
+		<button id="button">获取位置</button>
+		<textarea id="message" style="width:400px;height:300px;"></textarea>
+		<script>
+			function dom(id){
+				return document.getElementById(id);
+			};
+			window.onload = function(){
+//				console.log(navigator);
+				//判断地理位置是否可用
+				if ("geolocation" in navigator) {
+				  console.log("地理位置服务可用");
+				} else {
+				  console.log("地理位置服务不可用");
+				};
+				var messageDom = dom("message");
+				dom("button").onclick = function(){
+					console.log("进入了....");
+					//获取地理定位的信息navigator.geolocation.getCurrentPosition(successFn,errorFn,params);
+					navigator.geolocation.getCurrentPosition(function(success){
+						console.log(success);
+						//坐标对象coords
+						messageDom.value ="纬度："+success.coords.latitude;
+						messageDom.value+= "\n经度："+success.coords.longitude;
+						messageDom.value+= "\n精确度："+success.coords.accuracy;
+						messageDom.value+= "\n海拔高度："+success.coords.altitude;
+						messageDom.value+= "\n海拔精确度："+success.coords.altitudeAccuracy;
+						messageDom.value+= "\n移动方向："+success.coords.heading;
+						messageDom.value+= "\n移动速度："+success.coords.speed;
+					},function(error){
+						//如果获取失败进入这里 error对象
+						// code = 1 拒绝浏览器获取地理位置信息 
+						// code = 2 尝试获取地理位置失败
+						// code = 3 获取地理位置过程中时间如果超过了 timeout设定设定的时间，就执行error.code 状态
+						console.log(error);
+						console.log(error.code);
+						if(error.code == 1){
+							console.log("拒绝浏览器获取地理位置信息");
+						}else if(error.code == 2){
+							console.log("尝试获取地理位置失败");
+						}else if(error.code == 3){
+							console.log("尝试获取地理位置超时");
+						}
+					},{
+						enableHighAccuracy:true,//是否获取高精度定位。
+						timeout:5000,//单位ms，默认无时限
+						maximumAge:5000,//单位ms,默认值0，代表每次点击请求都是新的数据，造成一个性能开销，只有前后两次请求的时间大于该值才会请求数据
+					});
+					
+					
+					//watchPostion(successFn,errorFn,params)参数列表和getCurrentPosition一样，只是params参数多了一个可以一多大频率刷新数据的frequency，用于时刻监听地理位置信息的变化
+					navigator.geolocation.watchPosition(function(success){
+						console.log(success);
+						//坐标对象coords
+						messageDom.value ="纬度："+success.coords.latitude;
+						messageDom.value+= "\n经度："+success.coords.longitude;
+						messageDom.value+= "\n精确度："+success.coords.accuracy;
+						messageDom.value+= "\n海拔高度："+success.coords.altitude;
+						messageDom.value+= "\n海拔精确度："+success.coords.altitudeAccuracy;
+						messageDom.value+= "\n移动方向："+success.coords.heading;
+						messageDom.value+= "\n移动速度："+success.coords.speed;
+					},function(error){
+						//如果获取失败进入这里 error对象
+						// code = 1 拒绝浏览器获取地理位置信息 
+						// code = 2 尝试获取地理位置失败
+						// code = 3 获取地理位置过程中时间如果超过了 timeout设定设定的时间，就执行error.code 状态
+						console.log(error);
+						console.log(error.code);
+						if(error.code == 1){
+							console.log("拒绝浏览器获取地理位置信息");
+						}else if(error.code == 2){
+							console.log("尝试获取地理位置失败");
+						}else if(error.code == 3){
+							console.log("尝试获取地理位置超时");
+						}
+					},{
+						frequency:2000,
+						enableHighAccuracy:true,//是否获取高精度定位。
+						timeout:5000,//单位ms，默认无时限
+						maximumAge:5000,//单位ms,默认值0，代表每次点击请求都是新的数据，造成一个性能开销，只有前后两次请求的时间大于该值才会请求数据
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

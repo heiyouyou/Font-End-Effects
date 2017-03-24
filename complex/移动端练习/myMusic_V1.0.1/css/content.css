@@ -1,0 +1,6 @@
+.main .mlist{border-bottom:1px solid #ccc;}
+.textColor{color:rgb(48, 48, 48);text-align:justify;word-break:break-word;}
+.mcomment .chead{background-color:#fafafa;}
+.mcomment .ctext{border:0;box-shadow: 0 0 3px #ccc;}
+.mcomment .commentsubmit{right:0;top:0;}
+.mcomment #showface{left:0;top:11px;}
